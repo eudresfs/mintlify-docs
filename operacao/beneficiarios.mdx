@@ -1,0 +1,192 @@
+---
+title: Beneficiários
+description: Cadastro, busca, edição e transferência de cidadãos atendidos.
+---
+
+O módulo **Beneficiários** é onde você cadastra e mantém os dados das pessoas atendidas pela assistência social. Antes de criar uma solicitação de benefício, é preciso ter o cidadão cadastrado.
+
+---
+
+## 4.1. Tela de listagem
+
+Acesse pelo menu **Beneficiários** (ou em `/beneficiarios`).
+
+A tabela mostra:
+
+| Coluna | Conteúdo |
+|---|---|
+| **Nome** | Nome completo do cidadão |
+| **CPF** | Formatado (XXX.XXX.XXX-XX) |
+| **Unidade** | Unidade de vinculação atual |
+| **Status** | Ativo / Inativo |
+| **Ações** | Botões: Transferir, Detalhes, Excluir |
+
+### Filtros disponíveis
+
+- **Unidade** (multi-seleção) — útil quando você tem permissão sobre várias unidades.
+- **Bairro** (multi-seleção) — para análises por região.
+
+### Buscando
+
+A barra de busca encontra por:
+
+- **Nome** (parcial — "joã" encontra "João Silva").
+- **CPF** (com ou sem pontuação).
+- **NIS** (Número de Identificação Social).
+
+> A busca não diferencia maiúsculas/minúsculas e ignora acentos.
+
+---
+
+## 4.2. Cadastrar um novo beneficiário
+
+### Quando cadastrar
+
+Cadastre um cidadão **antes** de iniciar uma solicitação de benefício. Se o cidadão já existir (mesmo CPF), o sistema impede duplicação e oferece **abrir o cadastro existente**.
+
+### Passo a passo
+
+1. Na tela **Beneficiários**, clique em **Adicionar Beneficiário**.
+2. O sistema abre um formulário multi-etapa. Preencha cada seção:
+
+#### Etapa 1 — Dados Pessoais
+
+- **Nome completo** (obrigatório).
+- **CPF** (obrigatório, único no sistema).
+- **RG** + órgão emissor + UF (recomendado).
+- **NIS / NIT** (se houver — útil para integração CadÚnico).
+- **Data de nascimento** (obrigatório).
+- **Sexo**.
+- **Estado civil** (Solteiro, Casado, União Estável, Divorciado, Viúvo).
+- **Escolaridade** (Analfabeto, Educação Infantil, Fundamental, Médio, Superior, Pós-graduação — completo ou incompleto).
+- **Nome da mãe**.
+- **Nome do pai** (opcional).
+- **Naturalidade** (cidade + UF).
+- **Nacionalidade**.
+
+#### Etapa 2 — Endereço
+
+- **CEP** (digite e o sistema preenche automaticamente os demais campos via integração).
+- **Logradouro**, **Número**, **Complemento**, **Bairro**, **Cidade**, **UF**.
+- **Ponto de referência** (opcional).
+
+#### Etapa 3 — Contatos
+
+- Pelo menos **um telefone** (celular preferencialmente — usado para SMS).
+- **E-mail** (recomendado — usado para notificações).
+- Você pode adicionar **múltiplos telefones / e-mails**.
+
+#### Etapa 4 — Composição Familiar
+
+Adicione cada membro da família com:
+
+- Nome, parentesco (Cônjuge, Filho/a, Pai, Mãe, Irmão/Irmã, Avô/Avó, Neto/Neta, Tio/Tia, Sobrinho/Sobrinha, Outro).
+- Data de nascimento.
+- CPF (se maior de idade).
+- Escolaridade.
+- Ocupação.
+- Renda mensal.
+- Possui deficiência? (Sim/Não — se sim, qual).
+
+#### Etapa 5 — Dados Sociais
+
+- **Renda familiar total** (R$ por mês).
+- **Renda per capita** (calculada automaticamente).
+- **Recebe Bolsa Família?** (Sim/Não — se sim, valor).
+- **Recebe BPC?** (Benefício de Prestação Continuada).
+- **Outros benefícios governamentais**.
+- **Tipo de moradia**: Própria, Alugada, Cedida, Insalubre, Situação de Rua.
+- **Origem do atendimento**: Presencial, Telefone, Online, Encaminhamento.
+
+#### Etapa 6 — Dados Bancários (PIX)
+
+Para receber pagamentos. Pode ser preenchido depois.
+
+- **Tipo de conta**: Corrente, Poupança, Poupança Social.
+- **Banco** + **Agência** + **Conta**.
+- **CPF do titular** (se diferente do beneficiário).
+- **Chave PIX** (CPF, Email, Telefone, Aleatória).
+
+3. Revise e clique em **Salvar**.
+4. O sistema valida CPF, e-mail e telefones em tempo real.
+5. Em caso de duplicação de CPF, o sistema avisa e oferece **abrir o cadastro existente**.
+
+> Dados sensíveis (CPF, RG, dados bancários, laudo médico) ficam **automaticamente classificados como sensíveis** pela LGPD. Todo acesso é registrado.
+
+---
+
+## 4.3. Visualizar detalhes do beneficiário
+
+Na lista, clique no ícone de **olho** (👁) ou no nome do cidadão.
+
+A tela de detalhes (`/beneficiarios/:id`) mostra:
+
+### Cards informativos
+
+- **Dados Pessoais** — nome, CPF, RG, NIS, data nasc., sexo, estado civil, escolaridade.
+- **Endereço** — completo.
+- **Contatos** — telefones e e-mails.
+- **Dados Socioeconômicos** — renda, composição, situação habitacional.
+- **Dados PIX** — para pagamentos.
+
+### Seções complementares
+
+- **Família** — lista de membros com parentesco e idade.
+- **Documentos** — todos os documentos anexados ao cidadão (separados por tipo).
+- **Solicitações** — histórico de todas as solicitações deste cidadão.
+- **Concessões Ativas** — benefícios que ele recebe atualmente.
+- **Histórico de Visitas** — visitas técnicas já realizadas.
+
+### Editar dados
+
+Clique no botão **Editar** em qualquer card. O formulário abre com os dados atuais. Salve para confirmar.
+
+> Você só pode editar cidadãos da **sua unidade**.
+
+---
+
+## 4.4. Transferir cidadão para outra unidade
+
+Use quando o cidadão muda de bairro, ou quando o atendimento passa para outra unidade.
+
+1. Na lista, clique no ícone de **seta dupla** (⇄) na linha do cidadão.
+2. Selecione a **unidade de destino**.
+3. Informe o **motivo da transferência** (texto livre).
+4. Clique em **Confirmar Transferência**.
+5. O cidadão é movido. Todo o histórico (solicitações, concessões, documentos) é preservado.
+
+> Após a transferência, **você perde o acesso** ao cidadão (a menos que tenha permissão na unidade destino).
+
+---
+
+## 4.5. Desativar (excluir) um cidadão
+
+> O sistema **não exclui** dados — apenas marca como inativo (soft delete). O histórico é preservado para auditoria.
+
+Quando usar:
+
+- Cidadão duplicado (foi cadastrado duas vezes por engano).
+- Falecido sem benefícios ativos.
+- Erro de cadastro grave.
+
+**Não** use para "limpar" cidadãos que apenas pararam de usar o sistema.
+
+### Como desativar
+
+1. Na lista, clique no ícone de **lixeira**  na linha do cidadão.
+2. Confirme o motivo.
+3. O sistema valida:
+   - Se o cidadão tem **concessões ativas**, a desativação é **bloqueada**.
+   - Você precisa primeiro **cessar as concessões**.
+4. Após confirmação, o cidadão sai da listagem ativa, mas continua em relatórios históricos.
+
+---
+
+## 4.6. Boas práticas
+
+- **Antes de cadastrar, sempre busque pelo CPF** — evita duplicidade.
+- **Valide endereço e contato no momento do atendimento** — são essenciais para visitas e notificações.
+- **Cadastre toda a família, não apenas o solicitante** — afeta o cálculo de renda per capita.
+- **Inclua o NIS sempre que possível** — habilita a integração com CadÚnico.
+- Evite: **Nunca exclua cidadãos com concessões ativas** — cesse antes.
+- Evite: **Nunca compartilhe a tela com dados de cidadão na presença de outros atendidos** — exigência LGPD.

@@ -1,0 +1,252 @@
+---
+title: Perguntas frequentes
+description: Respostas rápidas para dúvidas comuns sobre o PGBen.
+---
+
+Respostas rápidas para dúvidas comuns. Para temas mais profundos, consulte os capítulos correspondentes.
+
+---
+
+## Acesso e conta
+
+### Não consigo entrar — esqueci a senha
+
+Use **Esqueci minha senha** na tela de login. Você receberá um e-mail com link para definir nova senha. Veja [2.1. Acessando o sistema](02-primeiros-passos.md#21-acessando-o-sistema).
+
+### O link do e-mail expirou
+
+Os links têm prazo de validade. Peça ao administrador da unidade para reenviar.
+
+### Minha conta bloqueou após erros de senha
+
+Após várias tentativas erradas, a conta é bloqueada por segurança. Procure o administrador da unidade para destravar.
+
+### Não consigo trocar meu e-mail / unidade
+
+Esses dados só podem ser alterados pelo administrador. Solicite formalmente.
+
+### A sessão expirou enquanto eu trabalhava
+
+Por segurança, a sessão encerra após período de inatividade. Faça login novamente — rascunhos salvos são preservados.
+
+---
+
+## Beneficiários
+
+### Onde encontro o cadastro de um cidadão?
+
+Menu **Beneficiários**. Use a busca por nome, CPF ou NIS. Veja [Capítulo 4](04-beneficiarios.md).
+
+### O CPF não é aceito — diz que já existe
+
+O cidadão já está cadastrado. A própria mensagem oferece **abrir o cadastro existente**. Nunca cadastre duplicado.
+
+### Como atualizo o endereço de um beneficiário?
+
+Tela de **Detalhes do Beneficiário** → card **Endereço** → **Editar**. Veja [4.3](04-beneficiarios.md#43-visualizar-detalhes-do-beneficiário).
+
+### Posso excluir um cidadão?
+
+O sistema **não exclui de fato** — apenas desativa (preserva histórico). E só é possível se ele **não tiver concessões ativas**. Veja [4.5](04-beneficiarios.md#45-desativar-excluir-um-cidadão).
+
+### O cidadão mudou de bairro — como faço?
+
+Use **Transferir Unidade** na lista de beneficiários. Mantém todo o histórico. Veja [4.4](04-beneficiarios.md#44-transferir-cidadão-para-outra-unidade).
+
+---
+
+## Solicitações
+
+### Como crio uma solicitação?
+
+Menu **Solicitações** → **Nova Solicitação**. Modal multi-etapa guia o processo. Veja [5.3](05-solicitacoes.md#53-criar-uma-nova-solicitação).
+
+### O cidadão não trouxe todos os documentos. Posso salvar pela metade?
+
+Sim. Use **Salvar Rascunho** na última etapa. Continue depois quando os documentos estiverem disponíveis.
+
+### Como acompanho uma solicitação que já enviei?
+
+Menu **Solicitações** → procure pelo protocolo ou nome. Clique para abrir os detalhes. Veja [5.4](05-solicitacoes.md#54-acompanhar-uma-solicitação).
+
+### Faltou um documento. Como peço para o cidadão enviar?
+
+Botão **Pendenciar** na tela de detalhes. Defina o que precisa e o prazo. O cidadão é notificado por e-mail/SMS. Veja [5.5](05-solicitacoes.md#55-pendenciar-solicitar-complementação).
+
+### A solicitação foi aprovada, e agora?
+
+O sistema gera automaticamente uma **Concessão** e os **Pagamentos**. Acesse **Concessões** para gerenciar. Veja [Capítulo 6](06-concessoes-pagamentos.md).
+
+### Posso reabrir uma solicitação indeferida?
+
+Em alguns casos, sim — pelo botão **Reabrir Solicitação** na tela de detalhes. A política do município define quando isso é permitido.
+
+### O que é "Determinação Judicial"?
+
+Solicitação com base em decisão judicial. Recebe prioridade obrigatória. Marque a flag ao criar e anexe a decisão. Veja [5.8](05-solicitacoes.md#58-determinação-judicial).
+
+---
+
+## Concessões e Pagamentos
+
+### Quando o pagamento é gerado?
+
+Automaticamente, após a aprovação da solicitação. Veja [Capítulo 6](06-concessoes-pagamentos.md).
+
+### Diferença entre suspender, bloquear e cessar uma concessão?
+
+- **Suspender** — pausa temporária, reversível.
+- **Bloquear** — restrição mais grave (suspeita de fraude), reversível após investigação.
+- **Cessar** — encerra definitivamente.
+
+Veja [6.3 a 6.5](06-concessoes-pagamentos.md#63-suspender-uma-concessão).
+
+### Como confirmo que o pagamento foi feito?
+
+Após o pagamento ser processado pelo banco/financeiro, anexe o comprovante na tela do pagamento. Status muda para **Confirmado**. Veja [6.10](06-concessoes-pagamentos.md#610-confirmar-comprovante-de-pagamento).
+
+### Liberei pagamento por engano. Como reverto?
+
+Use **Estornar** ou **Cancelar** dependendo do estágio. Estorno reverte; cancelamento é definitivo. Documente bem o motivo — vai para auditoria.
+
+### Como renovo um benefício continuado (ex.: aluguel social)?
+
+Manualmente, pela concessão atual, antes do vencimento. O técnico inicia a renovação a partir da concessão original; os dados são reaproveitados. Veja [5.9](05-solicitacoes.md#59-renovação-de-benefício-continuado).
+
+---
+
+## Visitas Técnicas
+
+### Como agendo uma visita?
+
+Menu **Monitoramento → Planejamento** → **Agendar Visita**. Selecione beneficiário, data, hora, técnico, prioridade. Veja [7.3](07-monitoramento.md#73-planejamento-de-visitas).
+
+### O que faço se o beneficiário não estava em casa?
+
+Registre o resultado como **Beneficiário Ausente**. O sistema permite **reagendar** a visita. Veja [7.4](07-monitoramento.md#74-realizar-e-registrar-a-visita).
+
+### O resultado da visita foi "Não Conforme". E agora?
+
+O sistema permite emitir uma **Advertência** automaticamente. O coordenador aprova. O beneficiário recebe notificação e tem prazo para responder. Veja [7.5](07-monitoramento.md#75-advertências-não-conformidade).
+
+### Posso tirar fotos durante a visita?
+
+Sim, **com consentimento do beneficiário**. Registre o consentimento no relatório. Não anexe fotos sem autorização — exigência LGPD.
+
+---
+
+## Documentos
+
+### Tamanho máximo do arquivo?
+
+Padrão **5 MB** por arquivo (varia por módulo). Tipos aceitos: PDF, JPG, PNG, DOC.
+
+### O arquivo subiu errado, como removo?
+
+Antes de salvar a solicitação: clique no `×` no card do arquivo. Após salvar (em rascunho), edite a solicitação e remova. Após enviar para análise, peça ao técnico/coordenador.
+
+### Onde ficam armazenados os documentos?
+
+No storage seguro do município (Oracle OCI Object Storage por padrão), com criptografia. Acesso é registrado para LGPD.
+
+---
+
+## Notificações
+
+### Não recebi o e-mail / SMS
+
+Verifique:
+1. Se o e-mail/telefone está cadastrado corretamente no perfil.
+2. Caixa de spam (no caso de e-mail).
+3. Se o sistema teve fila de envio em atraso (peça ao admin para verificar).
+
+### Como ativar / desativar notificações?
+
+Por padrão, todas as notificações relevantes ao seu perfil estão ativas. Configurações finas dependem da política do município.
+
+### Posso ver notificações antigas?
+
+Sim, na **Central de Notificações** (`/notificacoes`). Use os filtros para localizar.
+
+---
+
+## Relatórios
+
+### Como gero um relatório?
+
+Em qualquer listagem com botão **Downloads**. Aplique filtros, escolha formato (PDF, Excel, CSV). Veja [9.1](09-relatorios-downloads.md#91-relatórios-sob-demanda).
+
+### Quero o mesmo relatório toda semana
+
+Use **Relatórios Agendados** (`/relatorios-agendados`). Configure frequência, filtros e destinatários. Veja [9.2](09-relatorios-downloads.md#92-relatórios-agendados).
+
+### O download falhou ou não chega
+
+Acesse a tela **Downloads** (`/downloads`) — ali você vê todos os jobs e pode tentar novamente jobs com falha.
+
+---
+
+## Administração
+
+### Sou admin novo. O que configurar primeiro?
+
+Siga o checklist em [8.1](08-administracao.md#81-configuração-inicial--checklist):
+1. Unidades.
+2. Setores.
+3. Perfis customizados.
+4. Usuários.
+5. Tipos de benefício.
+6. Orçamento.
+7. Integrações.
+
+### Como crio um usuário?
+
+Menu **Usuários** → **Adicionar Usuário**. Sistema envia e-mail de boas-vindas com link de primeiro acesso. Veja [8.2](08-administracao.md#82-usuários).
+
+### Esqueci de configurar permissão e o usuário não vê nada
+
+Vá ao **Perfil** do usuário, ajuste roles. Mudanças têm efeito imediato.
+
+### Como criar um novo tipo de benefício?
+
+Menu **Benefícios** → **Novo Benefício** → modal multi-etapa. Veja [8.5](08-administracao.md#85-tipos-de-benefício).
+
+### O orçamento estourou. O que acontece?
+
+O sistema **não bloqueia automaticamente**. Você é o responsável por monitorar pelo Painel Gerencial e tomar decisão (suspender aprovações, solicitar aditivo, redirecionar verba).
+
+---
+
+## LGPD e auditoria
+
+### O sistema é compatível com a LGPD?
+
+Sim. Toda operação é auditada, dados sensíveis têm acesso registrado, e há controles de retenção.
+
+### Posso ver quem acessou um cadastro?
+
+A funcionalidade existe no backend; a tela frontend está temporariamente desativada nesta versão. Para consulta, abra chamado com a equipe de TI.
+
+### Posso baixar dados de um cidadão a pedido dele (Direito do Titular)?
+
+Sim. Use exportação dos dados específicos. Procedimentos detalhados ficam com a equipe de proteção de dados (DPO) do município.
+
+---
+
+## Problemas técnicos
+
+### A página está lenta ou travou
+
+1. Atualize (F5).
+2. Feche e abra o navegador.
+3. Limpe o cache (Ctrl+Shift+Del).
+4. Use Chrome ou Edge atualizados.
+5. Se persistir, abra chamado.
+
+### Erro 401 / 403 / 500
+
+Veja [Capítulo 12 — Solução de Problemas](12-troubleshooting.md).
+
+### Recurso que vi mencionado em treinamento não aparece
+
+Pode ser permissão (peça ao admin) ou recurso ainda não habilitado na sua instalação. Confirme com a coordenação.

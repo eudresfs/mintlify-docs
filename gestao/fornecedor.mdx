@@ -1,0 +1,178 @@
+---
+title: Portal do fornecedor
+description: Para parceiros que entregam serviços e produtos aos beneficiários.
+---
+
+Fornecedores parceiros (restaurantes, imobiliárias, transportadoras, papelarias, etc.) que entregam serviços e produtos relacionados aos benefícios sociais usam um **portal próprio** no PGBen, separado do sistema de gestão.
+
+Este capítulo é destinado **exclusivamente** ao usuário fornecedor.
+
+---
+
+## 10.1. O que é o Portal do Fornecedor
+
+É uma área dentro do sistema com layout próprio, onde fornecedores cadastrados pela SEMTAS podem:
+
+- Receber **autorizações** para entregar serviços/produtos a beneficiários específicos.
+- **Aceitar** ou **rejeitar** essas autorizações.
+- **Complementar dados** de uma solicitação (anexar documentos, preencher informações faltantes).
+- **Gerenciar funcionários** autorizados a executar entregas em nome da empresa.
+- **Acompanhar histórico** de transações.
+
+O portal exibe os dados necessários para executar a entrega (incluindo identificação do beneficiário, item/serviço e valor). O fornecedor é responsável legal pelo tratamento confidencial dessas informações conforme a LGPD.
+
+---
+
+## 10.2. Acesso ao Portal
+
+### Cadastro do fornecedor
+
+O fornecedor é cadastrado pela equipe da SEMTAS no menu **Fornecedores** (rota administrativa em `/admin/fornecedores`). Os dados solicitados:
+
+- **Razão Social** + **Nome Fantasia**.
+- **CNPJ**.
+- **Contato** (telefone, e-mail).
+- **Endereço**.
+- **Status** (ativo / inativo).
+- **Funcionários autorizados** (nome, CPF).
+
+Após o cadastro, a SEMTAS envia ao fornecedor um e-mail com o link de **acesso ao portal**.
+
+### Login
+
+1. Acesse `/fornecedor/entrar`.
+2. Use as credenciais enviadas pela SEMTAS.
+3. Ao logar, você é direcionado ao **Dashboard do Fornecedor** (`/fornecedor`).
+
+---
+
+## 10.3. Dashboard do Fornecedor
+
+Tela inicial após o login. Exibe:
+
+- **Autorizações pendentes** — esperando seu aceite/rejeição.
+- **Solicitações em andamento** — autorizações já aceitas.
+- **Estatísticas do mês** — total recebido, total entregue.
+- **Avisos** da SEMTAS.
+
+---
+
+## 10.4. Receber e responder a uma autorização
+
+### Pelo e-mail (autorização pública)
+
+A SEMTAS pode enviar uma **autorização pública** por e-mail com link direto. Você não precisa estar logado para responder.
+
+1. Receba o e-mail com link tipo `/autorizacao/fornecedor?token=...`.
+2. Abra o link.
+3. A tela mostra:
+   - **Detalhes da autorização**: serviço/produto solicitado, beneficiário (nome ou apelido), data/hora prevista de entrega, valor.
+   - Botões: **Aceitar** / **Rejeitar**.
+4. Se **Aceitar**:
+   - Confirme.
+   - O sistema sugere fazer login no portal para acompanhar.
+   - A solicitação aparece em `/fornecedor/solicitacoes` com status **Aceita**.
+5. Se **Rejeitar**:
+   - Informe o **motivo** (ex.: indisponibilidade de estoque, dia/hora inviável).
+   - A SEMTAS é notificada e pode redirecionar a outro fornecedor.
+
+### Pelo portal
+
+1. Logue em `/fornecedor`.
+2. Vá a **Autorizações Pendentes** (no Dashboard ou em menu próprio).
+3. Clique em uma autorização para ver detalhes.
+4. **Aceitar** ou **Rejeitar** com mesmo fluxo acima.
+
+---
+
+## 10.5. Solicitações
+
+Acesse menu **Solicitações** (`/fornecedor/solicitacoes`).
+
+### Listagem
+
+Mostra todas as solicitações em que você está envolvido (aceitas, em andamento, concluídas).
+
+| Coluna | Conteúdo |
+|---|---|
+| **Protocolo** | Número da solicitação |
+| **Beneficiário** | Nome do beneficiário |
+| **Tipo de Serviço** | O que foi solicitado |
+| **Status** | Aceita, Em complementação, Aguardando autorização, Concluída |
+| **Data limite** | Quando entregar |
+
+### Filtros
+
+- Status, Tipo de Serviço, Período.
+
+---
+
+## 10.6. Criar uma nova solicitação (Fornecedor)
+
+Em alguns casos, o fornecedor pode iniciar uma solicitação em nome de um beneficiário (ex.: imobiliária registra aluguel social com base em contrato existente).
+
+1. Em **Solicitações**, clique em **Nova Solicitação**.
+2. Preencha:
+   - Dados do beneficiário (nome, CPF se conhecido).
+   - Tipo de serviço.
+   - Detalhes específicos.
+   - Anexos comprobatórios.
+3. **Enviar Solicitação**.
+4. A solicitação fica com status **Aguardando Autorização** até a SEMTAS aprovar.
+
+---
+
+## 10.7. Complementar uma solicitação
+
+Quando a SEMTAS pede informações adicionais (uma pendência), você é notificado por e-mail.
+
+1. Acesse a solicitação em `/fornecedor/solicitacoes/:id/complementar`.
+2. Veja o que foi solicitado pela SEMTAS (texto da pendência).
+3. Preencha os campos / anexe documentos faltantes.
+4. Clique em **Enviar Solicitação** ou **Salvar Rascunho**.
+
+---
+
+## 10.8. Funcionários
+
+Acesse menu **Funcionários** (`/fornecedor/funcionarios`).
+
+Gerencie quem da sua empresa está autorizado a executar entregas/serviços em nome do fornecedor.
+
+### Cadastrar funcionário
+
+1. **Adicionar Funcionário**.
+2. Preencha:
+   - Nome.
+   - CPF.
+   - Cargo / função.
+   - E-mail / telefone.
+3. Salve.
+
+### Editar / desativar
+
+Igual aos demais cadastros: edite ou alterne status na linha.
+
+> Apenas **funcionários ativos** podem executar entregas. A SEMTAS pode auditar quem foi o responsável por cada transação.
+
+---
+
+## 10.9. Limites do acesso de fornecedor
+
+Por questões de **LGPD** e segurança, o fornecedor:
+
+- **Não pode** aprovar ou alterar status de solicitações além das suas.
+- Vê apenas as solicitações que lhe foram designadas.
+
+> ⚠️ **Atenção LGPD:** o portal de fornecedor exibe dados do beneficiário necessários para a entrega (incluindo informações de identificação). Trate todos os dados visualizados como confidenciais. Compartilhamento ou uso indevido configura violação contratual e da Lei Geral de Proteção de Dados.
+
+---
+
+## 10.10. Boas práticas
+
+- **Responda autorizações rapidamente** — atrasos podem prejudicar o beneficiário.
+- **Mantenha a lista de funcionários atualizada** — apenas autorizados podem executar entregas.
+- **Anexe comprovantes de entrega quando solicitado** — fortalece o vínculo de confiança.
+- **Comunique problemas pelo portal**, não fora dele — fica registrado.
+- Evite: **Nunca compartilhe dados de beneficiários** com pessoas não autorizadas.
+- Evite: **Nunca use as credenciais de outro fornecedor** — cada empresa tem login próprio.

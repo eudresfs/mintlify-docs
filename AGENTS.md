@@ -1,33 +1,52 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
+# PGBen Docs — Agent Instructions
 
-# Documentation project instructions
+Documentação Mintlify do PGBen (Plataforma de Gestão de Benefícios Eventuais). MDX com frontmatter YAML. Configuração em `docs.json`. Preview local via `mint dev`. Validação de links via `mint broken-links`.
 
-## About this project
+## Brand & Tom
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Run `mint dev` to preview locally
-- Run `mint broken-links` to check links
+- **Brand**: Municipal Teal `#137f93` (institucional, não-vibrante).
+- **Tom**: Institucional, técnico, direto. Sem emojis, sem informal, sem hedging.
+- **Referência positiva**: Gov.br / Serpro.
+- **Anti-referências**: SaaS startup genérico, sistema legado de prefeitura, app de consumidor.
 
-## Terminology
+## Style Guidelines
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- Voz ativa, segunda pessoa.
+- Frases concisas, um conceito por vez.
+- Sentence case em headers (`## Por papel`, não `## Por Papel`).
+- Negrito para elementos de UI: clique em **Aprovar**.
+- Código para referências técnicas: `/solicitacoes/em-analise`.
 
-## Style preferences
+## Estrutura
 
-{/* Add any project-specific style rules below */}
+```
+pgben-mintlify-docs/
+├── docs.json          # config (theme almond, navigation, colors)
+├── index.mdx          # landing
+├── sumario.mdx        # sumário canônico
+├── style.css          # custom CSS (Outfit + JetBrains Mono + ledger overrides)
+├── favicon.ico
+├── logo/
+│   ├── light.svg
+│   └── dark.svg
+├── comecar/           # 3 capítulos
+├── operacao/          # 4 capítulos
+├── gestao/            # 3 capítulos
+├── suporte/           # 2 capítulos
+└── apendice/          # índice remissivo
+```
 
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
+## Boundaries
 
-## Content boundaries
+- **Não usar**: emojis, gradientes, glassmorphism, hero metrics, identical card grids.
+- **Não documentar**: nomes literais de permissões internas (`cidadao.criar` etc.). Use linguagem abstrata: "perfil com acesso a beneficiários".
+- **Não afirmar**: features que não existem no código real (ver auditoria contra `pgben-server` e `pgben-front`).
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+## Setup
+
+```bash
+npm i -g mint
+mint dev
+```
+
+Mintlify CLI roda preview local em `http://localhost:3000`.

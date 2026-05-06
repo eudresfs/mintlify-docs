@@ -1,12 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
-  "name": "Product Guide",
-  "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
+  "name": "PGBen — Manual do Usuário",
+  "description": "Documentação operacional da Plataforma de Gestão de Benefícios Eventuais.",
   "colors": {
-    "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "primary": "#137f93",
+    "light": "#26a7be",
+    "dark": "#106b7a"
   },
   "favicon": "/favicon.ico",
   "icons": {
@@ -16,82 +16,94 @@
     "eyebrows": "breadcrumbs"
   },
   "contextual": {
-    "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
+    "options": ["copy", "view", "assistant"]
   },
   "navigation": {
     "global": {
       "anchors": [
         {
-          "anchor": "Home",
+          "anchor": "Início",
           "icon": "house",
           "href": "/"
         },
         {
-          "anchor": "Changelog",
-          "icon": "scroll-text",
-          "href": "https://www.mintlify.com/docs/changelog"
+          "anchor": "Sumário",
+          "icon": "list",
+          "href": "/sumario"
         },
         {
-          "anchor": "Help",
+          "anchor": "Suporte",
           "icon": "life-buoy",
-          "href": "https://www.mintlify.com/docs/contact-support"
+          "href": "/suporte/troubleshooting"
         }
       ]
     },
     "directory": "card",
     "groups": [
       {
-        "group": "Platform",
-        "icon": "layers",
+        "group": "Para começar",
+        "icon": "play",
         "expanded": true,
         "pages": [
-          "platform/quickstart",
-          "platform/key-concepts",
-          "platform/configuration/settings",
-          "platform/configuration/user-management",
-          "platform/administration/roles-permissions"
+          "comecar/introducao",
+          "comecar/primeiros-passos",
+          "comecar/glossario"
         ]
       },
       {
-        "group": "Analytics",
-        "icon": "chart-bar",
+        "group": "Operação",
+        "icon": "cog",
         "expanded": true,
         "pages": [
-          "analytics/quickstart",
-          "analytics/connect-data",
-          "analytics/dashboards/create-dashboard",
-          "analytics/reports/scheduled-reports"
+          "operacao/beneficiarios",
+          "operacao/solicitacoes",
+          "operacao/concessoes-pagamentos",
+          "operacao/monitoramento"
         ]
       },
       {
-        "group": "Integrations",
-        "icon": "plug",
+        "group": "Gestão",
+        "icon": "shield",
         "expanded": true,
         "pages": [
-          "integrations/quickstart",
-          "integrations/authentication",
-          "integrations/connectors/crm",
-          "integrations/webhooks/configure"
+          "gestao/administracao",
+          "gestao/relatorios-downloads",
+          "gestao/fornecedor"
+        ]
+      },
+      {
+        "group": "Suporte",
+        "icon": "circle-help",
+        "expanded": false,
+        "pages": [
+          "suporte/faq",
+          "suporte/troubleshooting"
+        ]
+      },
+      {
+        "group": "Apêndice",
+        "icon": "book-open",
+        "expanded": false,
+        "pages": [
+          "apendice/indice-remissivo",
+          "sumario"
         ]
       }
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
   },
   "navbar": {
     "links": [],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Acessar PGBen",
+      "href": "https://semtas-natal.pgben.com.br"
     }
   },
   "footer": {
-    "socials": {
-      "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/yourcompany"
-    }
+    "socials": {}
   }
 }

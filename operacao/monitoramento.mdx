@@ -1,0 +1,251 @@
+---
+title: Monitoramento e visitas técnicas
+description: Planejamento, registro de visitas e gestão de advertências.
+---
+
+O **monitoramento social** é o acompanhamento periódico das famílias beneficiárias por meio de **visitas técnicas domiciliares**. Garante que o benefício continue chegando a quem realmente precisa e dentro dos critérios de elegibilidade.
+
+---
+
+## 7.1. Quando uma visita é necessária
+
+- **Antes de aprovar** uma solicitação (visita prévia, opcional).
+- **Periodicamente** durante uma concessão continuada (a periodicidade é definida pela coordenação do município).
+- **Antes de renovar** uma concessão.
+- **Em investigação** de denúncia ou suspeita.
+- **Após advertência** para verificar regularização.
+
+---
+
+## 7.2. Prioridades
+
+A prioridade orienta o **tempo de resposta** esperado para realizar a visita após o agendamento. Os prazos efetivos são definidos pela coordenação do município.
+
+| Prioridade | Quando usar |
+|---|---|
+| **Urgente / Crítica** | Situação crítica de não conformidade, denúncia grave |
+| **Alta** | Suspeita de violação de critérios, casos sensíveis |
+| **Média** | Acompanhamento padrão com questões menores |
+| **Normal** | Acompanhamento periódico de rotina |
+| **Baixa** | Visita informativa / preventiva |
+
+---
+
+## 7.3. Planejamento de visitas
+
+Acesse o menu **Monitoramento → Planejamento** (ou `/monitoramento/planejamento`).
+
+### Visualizações
+
+- **Calendário mensal / semanal** — útil para enxergar a agenda da equipe.
+- **Lista** — útil para filtrar por técnico, prioridade, tipo.
+
+### Agendar uma visita
+
+1. Clique em **Agendar Visita** (ou em um dia do calendário).
+2. Preencha:
+   - **Beneficiário / Concessão** — busca por nome, CPF ou protocolo.
+   - **Data** e **hora**.
+   - **Tipo de visita** (escolha conforme o caso):
+     - **Inicial** — antes de aprovar a primeira concessão.
+     - **Continuidade** — acompanhamento de rotina.
+     - **Renovação** — antes de prorrogar.
+     - **Verificação** — checagem pontual.
+     - **Emergencial** — situação urgente / denúncia.
+     - **Encerramento** — antes de cessar o benefício.
+   - **Prioridade**.
+   - **Técnico responsável** — pode atribuir a si mesmo ou a outro.
+   - **Observações** (orientações, contexto).
+3. Salve.
+4. O sistema:
+   - Cria a visita com status **Agendada**.
+   - Notifica o **beneficiário** (e-mail / SMS) da data e hora.
+   - Notifica o **técnico responsável** (in-app).
+
+### Editar / cancelar / reagendar
+
+Na lista, clique no ícone de **editar**  ou **lixeira**  na linha da visita.
+
+- **Editar** — alterar data, hora, técnico, observações (antes de realizar).
+- **Cancelar** — encerra antes de acontecer.
+- **Reagendar** — duplica em nova data, mantendo histórico.
+
+---
+
+## 7.4. Realizar e registrar a visita
+
+Após ir ao endereço do beneficiário, retorne ao sistema para registrar.
+
+### Antes de ir
+
+- Imprima ou tenha à mão (em tablet / celular):
+  - Endereço atualizado.
+  - Composição familiar declarada.
+  - Documentos do cidadão.
+  - Histórico de visitas anteriores.
+
+### Durante a visita
+
+Você não interage com o sistema durante a visita. Anote em formulário de campo:
+
+- Quem estava presente.
+- Estado da moradia (fotos, se autorizado).
+- Mudanças na composição familiar.
+- Mudanças na renda.
+- Conformidade com os critérios do benefício.
+- Evidências de não conformidade (se houver).
+
+### Registrar resultado
+
+1. Acesse a visita em **Monitoramento → Visitas** (`/monitoramento/visitas`) ou direto pelo **link da notificação**.
+2. Clique em **Registrar Resultado**.
+3. Selecione o **resultado**:
+
+| Resultado | Quando usar |
+|---|---|
+| **Conforme** | Família atende plenamente todos os critérios |
+| **Parcialmente conforme** | Pequenas irregularidades, segue acompanhamento |
+| **Não conforme** | Violação grave dos critérios — gera **advertência** |
+| **Requer ação** | Situação crítica, intervenção imediata |
+| **Beneficiário ausente** | Não encontrado no endereço — reagendar |
+| **Endereço não localizado** | Problema de cadastro — atualizar endereço |
+| **Visita inconclusiva** | Não foi possível concluir por circunstâncias externas — reagendar |
+| **Não realizada** | Não pôde ser feita |
+| **Cancelada** | Cancelada antecipadamente |
+
+4. Preencha:
+   - **Observações** (texto detalhado — vai para o histórico).
+   - **Anexos** — fotos do imóvel (com consentimento), documentos coletados.
+   - **Nível de risco** identificado (Baixo, Médio, Alto, Crítico).
+5. Salve.
+6. O sistema:
+   - Muda status da visita para **Concluída**.
+   - Aguarda **aprovação do coordenador**.
+   - Se resultado = **Não conforme**, abre formulário de **Advertência** (próxima seção).
+
+### Aprovação do coordenador
+
+> Restrito a Coordenador.
+
+1. Coordenador acessa `/monitoramento/visitas` (ou notificação).
+2. Visualiza o relatório completo da visita.
+3. Clique em **Aprovar Resultado** ou **Solicitar Revisão**.
+4. Se aprovado, o resultado vai para o histórico da concessão.
+5. Se não conforme, a advertência é confirmada e enviada ao cidadão.
+
+---
+
+## 7.5. Advertências (não conformidade)
+
+Uma **advertência** é o registro formal de problema identificado. O cidadão tem **prazo definido pela coordenação** para responder; sem resposta dentro do prazo, o benefício pode ser cessado.
+
+### Acessando
+
+Menu **Monitoramento → Advertências** (`/monitoramento/advertencias`).
+
+### Listagem
+
+| Coluna | Conteúdo |
+|---|---|
+| **Beneficiário** | Nome + CPF |
+| **Motivo** | Descrição da não conformidade |
+| **Data emissão** | |
+| **Prazo limite** | |
+| **Status** | Pendente, Respondida, Aprovada, Rejeitada |
+| **Técnico** | Quem emitiu |
+
+### Fluxo
+
+```
+Visita "Não Conforme"
+     │
+     ▼
+Advertência PENDENTE  ──notifica cidadão──►
+     │
+     ├─ Cidadão responde (anexo, justificativa)
+     │     │
+     │     ▼
+     │   Status muda para RESPONDIDA
+     │     │
+     │     ├─► APROVADA   (resposta aceita pelo coordenador)
+     │     └─► REJEITADA  (insuficiente; gera nova ação)
+     │
+     └─ Cidadão NÃO responde no prazo
+           │
+           ▼
+        Coordenador decide ação (cessar, suspender, manter)
+```
+
+### Emitir advertência
+
+Geralmente é gerada **automaticamente** pelo sistema quando uma visita é **Não Conforme**. Você confirma o conteúdo e envia.
+
+- Pode ser emitida manualmente (tela de detalhes da concessão → **Emitir Advertência**) em casos especiais.
+
+### Responder / acompanhar
+
+1. Cidadão recebe e-mail / SMS com instruções e prazo.
+2. Cidadão envia resposta (digital ou presencial — técnico anexa).
+3. Técnico acessa a advertência; status muda para **Respondida**.
+4. Coordenador avalia → **Aprovada** (aceita resposta) ou **Rejeitada** (insuficiente).
+
+---
+
+## 7.6. Sugestão de ação ao coordenador
+
+Em visitas com não conformidades, o sistema oferece uma **sugestão de ação** ao coordenador, calculada de forma determinística com base no **histórico de não conformidades** da concessão:
+
+- **1ª não conformidade** → **Advertência**.
+- **2ª não conformidade** → **Advertência**.
+- **3ª não conformidade** → **Bloqueio**.
+- **4ª não conformidade** → **Suspensão**.
+- **5ª ou mais** → **Cancelamento**.
+
+A sugestão é apenas **recomendação** — o coordenador decide a ação efetiva.
+
+Acessível na tela da visita aprovada.
+
+---
+
+### Tipos de ação proposta
+
+- **Nenhuma** — visita conforme.
+- **Advertência** — emitir aviso formal ao beneficiário.
+- **Bloqueio** — bloquear pagamentos pendentes.
+- **Suspensão** — suspender a concessão.
+- **Cancelamento** — cessar a concessão.
+
+---
+
+## 7.7. Listagens e filtros
+
+### Visitas Realizadas (`/monitoramento/visitas`)
+
+Filtros:
+
+- **Técnico** (multi).
+- **Unidade** (multi).
+- **Tipo de Benefício** (multi).
+- **Tipo de Visita** (Inicial, Continuidade, Renovação, Verificação, Emergencial, Encerramento).
+- **Status** (Realizada, Não Realizada, Cancelada, Reagendada).
+- **Conformidade** (Conforme, Parcial, Não Conforme).
+- **Prioridade** (multi).
+- **Apenas Renovações**, **Determinação Judicial**.
+- **Período**.
+
+### Exportar
+
+**Downloads** → relatório completo (PDF / Excel) para prestação de contas.
+
+---
+
+## 7.8. Boas práticas
+
+- **Avise o beneficiário com antecedência** — visitas-surpresa são para investigação, não rotina.
+- **Vá em dupla** quando possível — segurança e isenção do relatório.
+- **Registre fotos e observações detalhadas** — vão respaldar decisões futuras.
+- **Respeite a dignidade da família** — não trate a visita como fiscalização punitiva.
+- **Atualize cadastro durante a visita** se identificar mudanças (endereço, composição, renda).
+- Evite: **Nunca emita advertência sem visita realizada** — exceto em situações documentadas.
+- Evite: **Não tire fotos sem consentimento** — registre o consentimento no relatório.
+- Evite: **Não decida sozinho cessar benefício** — passe por coordenador.

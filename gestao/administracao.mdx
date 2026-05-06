@@ -1,0 +1,410 @@
+---
+title: Administração do sistema
+description: Usuários, perfis, unidades, tipos de benefício, orçamento, ofígios e integrações.
+---
+
+Capítulo dedicado a **administradores** e **gestores** que configuram o PGBen para o município. Cobre cadastro de usuários, unidades, tipos de benefício, orçamento, ofícios e permissões.
+
+> A maioria das funções deste capítulo exige perfil **Administrador** (`requiresAdmin: true`) ou permissões específicas.
+
+---
+
+## 8.1. Configuração inicial — checklist
+
+Para um município começando do zero, siga esta sequência:
+
+1. Cadastrar **Unidades** (CRAS, CREAS, SEMTAS Central…).
+2. Cadastrar **Setores** dentro de cada unidade (se aplicável).
+3. Cadastrar **Roles / Perfis** customizados (se padrão não atende).
+4. Cadastrar **Usuários** vinculando-os à unidade e perfil.
+5. Cadastrar **Tipos de Benefício** com seus formulários, requisitos documentais, valores.
+6. Definir **Orçamento anual** por benefício.
+7. Configurar **Integrações** (e-mail SMTP, SMS, banco, CadÚnico).
+8. Definir **Parâmetros globais** (prazos, mensagens, alertas).
+
+---
+
+## 8.2. Usuários
+
+Acesse menu **Usuários** (ou `/usuarios`).
+
+### Listagem
+
+| Coluna | Conteúdo |
+|---|---|
+| **Nome** | |
+| **E-mail** | |
+| **CPF** | |
+| **Unidade** | Vinculação |
+| **Perfil(s)** | Roles atribuídos |
+| **Status** | Ativo / Inativo (toggle direto na linha) |
+| **Ações** | Editar, Reenviar credenciais, Excluir |
+
+### Filtros
+
+- **Unidade** (multi).
+- **Perfil** (multi).
+- **Status**.
+
+### Cadastrar usuário
+
+1. Clique em **Adicionar Usuário**.
+2. Preencha:
+   - **Nome completo**.
+   - **E-mail** (institucional, único no sistema).
+   - **CPF**.
+   - **Telefone** (recomendado para SMS).
+   - **Unidade de vinculação**.
+   - **Setor** (se aplicável).
+   - **Perfil(s)** — pode atribuir múltiplos.
+   - **Matrícula** (obrigatória, identificador interno).
+   - **Status inicial** (Ativo).
+3. Salve.
+4. O sistema:
+   - Gera senha temporária.
+   - Envia **e-mail de boas-vindas** com link de primeiro acesso (prazo de validade definido).
+   - Marca o usuário como **Primeiro Acesso pendente**.
+5. O novo usuário define a senha pelo link e está pronto para usar.
+
+### Editar usuário
+
+Mesmos campos. Algumas alterações têm efeitos:
+
+- Mudar **Unidade** — usuário perde acesso aos dados da anterior.
+- Mudar **Perfil** — efeito imediato (próxima requisição já reflete).
+- Desativar — usuário não consegue mais logar; sessões ativas expiram em 30 min.
+
+### Reenviar credenciais
+
+Use quando o link expirar ou o usuário não recebeu. Botão **Reenviar Credenciais** na linha → novo link gerado e enviado.
+
+### Resetar tentativas de login
+
+Após **5 tentativas erradas** consecutivas, a conta bloqueia. Para destravar:
+
+1. Localize o usuário.
+2. Botão **Resetar Tentativas** ou **Desbloquear**.
+3. Confirme.
+
+### Inativar / Excluir
+
+- **Inativar** (toggle Status) — usuário não loga, dados preservados.
+- **Excluir** — permitido só se o usuário **nunca** registrou ações no sistema (raro). Caso contrário, apenas inative.
+
+---
+
+## 8.3. Permissões e Perfis (Roles)
+
+Acesse **Configurações → Permissões** (ou `/configuracao/permissao`).
+
+### Perfis padrão
+
+O sistema vem com perfis prontos:
+
+- **Administrador** — todas as permissões.
+- **Coordenador / Gestor** — análise, aprovação, dashboards, relatórios.
+- **Assistente Social / Técnico** — operação diária (cidadãos, solicitações, visitas).
+- **Auditor** — somente leitura + relatórios + auditoria.
+- **Fornecedor** — portal externo (acesso restrito).
+
+### Criar perfil customizado
+
+1. Clique em **Criar Role Customizada**.
+2. **Nome** + **Descrição**.
+3. Marque as permissões desejadas. Estão organizadas por módulo (Cidadão, Solicitação, Pagamento, Concessão, Monitoramento, Relatórios, Auditoria, etc.) e por ação (criar, listar, visualizar, editar, excluir, aprovar, etc.).
+4. Salve.
+5. Atribua o perfil aos usuários desejados.
+
+### Editar / duplicar / excluir perfis
+
+- **Editar** — adicionar/remover permissões.
+- **Duplicar** — útil para criar variações (ex.: "Coordenador Júnior" baseado em "Coordenador").
+- **Excluir** — só se nenhum usuário usa o perfil.
+
+### Escopo das permissões
+
+Toda permissão é aplicada **dentro da unidade** do usuário, exceto para o perfil Administrador (escopo global) e permissões de configuração sistêmica.
+
+---
+
+## 8.4. Unidades
+
+Acesse menu **Unidades** (ou `/unidades`).
+
+### Cadastrar unidade
+
+1. Clique em **Adicionar Unidade**.
+2. Preencha:
+   - **Nome** (ex.: "CRAS Centro").
+   - **Tipo**: CRAS, CREAS, CENTRO_POP, SEMTAS, OUTRO.
+   - **Gerente** (selecione um usuário).
+   - **Endereço completo**.
+   - **Telefone** + **e-mail**.
+   - **Horário de funcionamento**.
+   - **Orçamento anual** (controle de gastos).
+3. Salve.
+
+### Editar / desativar
+
+- **Editar** — qualquer campo.
+- **Desativar** — desabilita a unidade (usuários vinculados também perdem acesso). Use quando uma unidade for fechada.
+
+### Setores
+
+Unidades grandes têm subdivisões configuráveis (cada município define os próprios). Cadastre em **Detalhes da Unidade → Setores**.
+
+---
+
+## 8.5. Tipos de Benefício
+
+Acesse menu **Benefícios** (ou `/beneficios`).
+
+A configuração de benefícios é o coração da personalização do PGBen para cada município. Define o que pode ser solicitado, com quais documentos, valores e regras.
+
+### Cadastrar benefício
+
+Clique em **Novo Benefício**. O modal multi-etapa pede:
+
+#### Etapa 1 — Informações Básicas
+
+- **Nome** (único).
+- **Descrição** (textual).
+- **Categoria**: Natalidade, Morte, Vulnerabilidade Temporária, Calamidade Pública.
+- **Ícone / Cor**.
+- **Status**: Ativo / Inativo.
+
+#### Etapa 2 — Valores e Período
+
+- **Valor base** (R$).
+- **Forma**: Pontual ou Continuado.
+- **Duração padrão** (em meses) — para continuados.
+- **Renovação permitida?** Quantas vezes?
+- **Valor máximo familiar** (algumas regras limitam por família/ano).
+
+#### Etapa 3 — Elegibilidade
+
+- **Limite de renda familiar** (R$).
+- **Renda per capita máxima**.
+- **Idade mínima / máxima** (do beneficiário).
+- **Residência mínima no município** (em meses).
+- **Composição familiar** (regras).
+- **Condições especiais**.
+
+#### Etapa 4 — Documentos Obrigatórios
+
+Selecione do catálogo (RG, CPF, comprovante de residência, comprovante de renda, certidão…) e, se necessário, **adicione documentos customizados** (ex.: "Notificação de despejo").
+
+Para cada documento:
+
+- **Obrigatório / Opcional**.
+- **Validade** (em dias) — comprovante de residência tem 90 dias, por exemplo.
+- **Aceita múltiplos arquivos?**
+- **Descrição / orientação ao usuário**.
+
+#### Etapa 5 — Formulário Dinâmico
+
+Editor visual para criar os campos específicos do formulário do benefício:
+
+- **Tipos de campo**: Texto, Texto longo (textarea), Número, Data, Booleano, Seleção, Múltipla escolha, Arquivo, CPF, CNPJ, E-mail, Telefone, CEP, Endereço, Moeda, Percentual.
+- **Validações**: obrigatório, mínimo, máximo, formato.
+- **Ordem** (drag-and-drop).
+- **Preview ao vivo**.
+
+Exemplo (Aluguel Social):
+- Campo "Motivo da demanda" → Seleção (Despejo, Situação de rua, Insalubre, Violência doméstica).
+- Campo "Valor do aluguel" → Número (com mínimo e máximo definidos pelo município).
+- Campo "Duração estimada" → Número (1 a 12 meses).
+- Campo "Especificações" → Texto longo.
+
+3. Salve.
+
+### Editar / duplicar / desativar
+
+- **Editar** — qualquer aspecto. Solicitações **já criadas** mantêm a configuração antiga; novas usam a nova.
+- **Duplicar** — útil para criar variações (ex.: "Cesta Básica Especial" baseada em "Cesta Básica").
+- **Desativar** — não aparece mais para novas solicitações; concessões existentes seguem ativas.
+- **Excluir** — só se **nenhuma solicitação** existir para o benefício.
+
+---
+
+## 8.6. Orçamento
+
+Acesse **Configurações → Orçamento** (ou `/configuracao/orcamento`).
+
+> Acesso restrito a Administrador ou a perfis com visualização de orçamento gerencial.
+
+### Resumo
+
+Cards no topo mostram:
+
+- **Orçamento Total Anual** (R$).
+- **Utilizado** (R$ + %).
+- **Disponível** (R$).
+
+### Por benefício
+
+Tabela com cada tipo, mostrando: **Benefício**, **Orçamento Anual**, **Utilizado**, **Disponível**, **% utilização** (valores ilustrativos abaixo):
+
+| Benefício | Orçamento Anual | Utilizado | Disponível | % |
+|---|---|---|---|---|
+| Aluguel Social | *(definido pelo município)* | *(consumo do ano)* | | |
+| Cesta Básica | *(definido pelo município)* | *(consumo do ano)* | | |
+
+### Definir / alterar orçamento
+
+1. Linha do benefício → **Definir Orçamento**.
+2. Informe valor anual, distribuição mensal (opcional).
+3. Salve.
+
+### Aditivos
+
+Quando o município reforça o orçamento durante o ano:
+
+1. Linha do benefício → **Adicionar Aditivo**.
+2. **Tipo**: Aumento / Redução.
+3. **Valor**.
+4. **Motivo** (justificativa textual).
+5. **Data efetiva**.
+6. Salve.
+
+### Acompanhamento
+
+O sistema rastreia consumo (burn-up) por benefício e exibe os totais utilizado / disponível na tela de orçamento e no Painel Gerencial. **Alertas e bloqueios automáticos não são aplicados pelo sistema** — cabe ao gestor monitorar e tomar decisões manuais (suspender aprovações, redirecionar verba, solicitar aditivo).
+
+---
+
+## 8.7. Ofícios
+
+Documentos formais emitidos pelo município, geralmente para prestação de contas ou comunicação a órgãos externos.
+
+Acesse menu **Ofícios** (ou `/oficios`).
+
+### Listagem
+
+| Coluna | Conteúdo |
+|---|---|
+| **Número** | Identificador do ofício |
+| **Tipo de Benefício** | Referência |
+| **Unidade Responsável** | |
+| **Período** | Data início — fim |
+| **Quantidade** | De beneficiários |
+| **Status** | Rascunho / Emitido / Arquivado |
+
+### Criar ofício
+
+1. **Novo Ofício**.
+2. Preencha:
+   - **Número** (auto-gerado ou manual).
+   - **Tipo** (modelo padronizado).
+   - **Tipo de Benefício**.
+   - **Unidade Responsável**.
+   - **Período**.
+   - **Beneficiários** envolvidos (busca multi-seleção).
+   - **Motivo / Descrição**.
+   - **Anexos** (documentos de apoio).
+3. **Salvar como Rascunho** ou **Emitir**.
+4. Sistema gera **PDF** pronto para impressão / assinatura digital.
+
+### Editar / visualizar / imprimir
+
+- **Editar** — só em rascunho.
+- **Visualizar** — abre PDF.
+- **Download** — salva localmente.
+
+---
+
+## 8.8. Configurações Globais (parâmetros do sistema)
+
+Acessível em **Configurações → Parâmetros** (caminho varia por instalação).
+
+Parâmetros ajustáveis (exemplos):
+
+| Chave | O que controla |
+|---|---|
+| `sistema.nome` | Nome exibido (ex.: "Sistema PGBEN — Município X") |
+| `sistema.url_publica` | URL usada em links de e-mails |
+| `pendencia.prazo_dias` | Dias para responder pendência (padrão 7) |
+| `pagamento.agendar_automatico` | Liberar pagamento automaticamente após aprovação? |
+| `email.remetente` | Endereço "De:" dos e-mails |
+| `email.smtp_host`, `email.smtp_port`, etc. | Servidor SMTP |
+| `integracao.cadunico_api_url` | Endpoint do CadÚnico |
+| `visita.prioridade_urgente_dias` | Prazo para visitas urgentes |
+| `recurso.permitido` | Permitir recurso após indeferimento? |
+| `recurso.prazo_dias` | Prazo para recorrer |
+
+> Alterações em parâmetros têm **efeito imediato** em todo o sistema. Faça com cuidado e em horários de baixo uso.
+
+---
+
+## 8.9. Integrações
+
+### E-mail (SMTP)
+
+Configure host, porta, usuário, senha do servidor SMTP. Teste com **Enviar E-mail de Teste**.
+
+### SMS
+
+Configure provedor (gateway SMS) — chave de API e número de origem. SMS é usado para notificações críticas (pendência com prazo, pagamento liberado, visita agendada).
+
+### Confirmação de pagamento
+
+O sistema oferece um **endpoint de confirmação de recebimento** que pode ser usado por integrações externas (ex.: webhook de banco) para registrar automaticamente que o pagamento foi efetuado. A integração efetiva depende de desenvolvimento específico para o banco utilizado.
+
+### CadÚnico / Receita Federal
+
+A interface de configuração permite informar endpoints dessas APIs federais. **A integração efetiva depende de implementação específica** — verifique com a equipe de TI se está ativa na sua instalação.
+
+### Storage de documentos
+
+Padrão: Oracle OCI Object Storage (criptografado). Em desenvolvimento, pode ser local. Configurações: bucket, credenciais, retenção.
+
+---
+
+## 8.10. Auditoria
+
+> **Tela de auditoria temporariamente desativada na interface.** Os logs continuam sendo gravados pelo backend; a consulta no momento é feita pela equipe de TI via banco de dados ou API administrativa.
+
+### O que é auditado
+
+- Toda operação CRUD em qualquer entidade.
+- Acesso a dados sensíveis (CPF, RG, banco, laudo).
+- Mudanças de status (solicitação, pagamento, concessão).
+- Login, logout, troca de senha, reset.
+- Exportações de dados.
+- Operações em massa.
+- Alteração de configurações.
+
+### Para cada evento, registra-se
+
+- Usuário (ID, nome, e-mail, IP).
+- Entidade.
+- Operação (CREATE / READ / UPDATE / DELETE).
+- Antes e depois (diff).
+- Timestamp (com timezone).
+- User-Agent.
+- Unidade do usuário.
+
+### Retenção
+
+Política definida no código (não configurável em runtime). Os valores praticados por tipo de evento:
+
+- **Login bem-sucedido**: ~6 anos (2.190 dias).
+- **Acesso a dados sensíveis**: 5 anos (1.825 dias).
+- **Exclusão de entidade**: ~3 anos (1.095 dias).
+- **Atualização de entidade**: 2 anos (730 dias).
+- **Criação de entidade**: 1 ano (365 dias).
+- **Demais eventos**: 90 dias.
+
+Logs **nunca são excluídos** dentro do prazo de retenção — apenas arquivados ao final.
+
+---
+
+## 8.11. Boas práticas
+
+- **Faça as configurações iniciais antes de liberar o uso** — usuários sem perfil correto travam.
+- **Documente cada parâmetro alterado** — anote por que mudou.
+- **Teste integrações em ambiente isolado** antes de subir para produção.
+- **Revise periodicamente os perfis customizados** — privilégio mínimo é o princípio.
+- **Acompanhe o orçamento mensalmente** — evite surpresa no fim do ano.
+- Evite: **Não exclua registros — desative**.
+- Evite: **Não compartilhe credenciais de admin** — cada gestor deve ter o próprio login.

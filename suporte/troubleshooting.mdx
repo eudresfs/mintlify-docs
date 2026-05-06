@@ -1,0 +1,294 @@
+---
+title: Solução de problemas
+description: Problemas comuns e como resolver. Como reportar bugs ao suporte.
+---
+
+Lista de problemas comuns e como resolver. Quando nada aqui resolver, contate o **administrador da unidade** ou a **equipe de TI** com:
+
+- Seu nome de usuário e unidade.
+- O que estava tentando fazer.
+- A **mensagem de erro exata** (cole o texto ou anexe captura de tela).
+- O **horário aproximado** do problema.
+- O **navegador** e versão (ex.: Chrome 124).
+
+---
+
+## 12.1. Problemas de acesso
+
+### Não consigo logar — "credenciais inválidas"
+
+**Causas possíveis e correções:**
+
+1. **Senha errada** — clique em **Esqueci minha senha** para resetar.
+2. **E-mail digitado errado** — verifique. O sistema diferencia (mas não acentos) maiúsculas/minúsculas em algumas instalações.
+3. **Conta bloqueada** após várias tentativas — peça ao administrador para destravar.
+4. **Conta desativada** — peça ao administrador para reativar.
+
+### "Usuário inativo" ou "acesso não permitido"
+
+A conta foi desativada. Procure o administrador da unidade.
+
+### Tela em branco após login
+
+1. Atualize com F5.
+2. Limpe o cache (Ctrl+Shift+Del → "imagens e arquivos em cache" → últimos 7 dias).
+3. Tente em outro navegador.
+4. Se persistir, pode ser falta de permissão para qualquer tela. Peça ao administrador para revisar seu perfil.
+
+### Sessão encerra sozinha
+
+Por segurança, a sessão expira após inatividade. Salve o trabalho frequentemente. Rascunhos persistem entre sessões.
+
+---
+
+## 12.2. Erros HTTP
+
+### 401 — Não Autorizado
+
+Sua sessão expirou. Faça login novamente.
+
+### 403 — Acesso Negado
+
+Você não tem permissão para essa tela ou ação. Peça ao administrador para revisar seu perfil de acesso.
+
+### 404 — Página Não Encontrada
+
+URL incorreta ou registro deletado. Use o menu para navegar; não digite URLs manualmente.
+
+### 500 — Erro Interno
+
+Falha no servidor. Tente novamente em alguns minutos. Se persistir, abra chamado com horário do erro.
+
+### 502 / 503 — Serviço Indisponível
+
+O sistema está em manutenção ou sobrecarga. Aguarde alguns minutos.
+
+### "Sem conexão com a internet"
+
+Verifique sua rede. O sistema mostra a tela `/offline` quando perde conexão.
+
+---
+
+## 12.3. Cadastro de cidadão
+
+### "CPF já cadastrado"
+
+O cidadão existe. Use a busca para localizá-lo. Nunca cadastre duplicado.
+
+### "CEP não encontrado"
+
+1. Verifique digitação.
+2. Se for CEP novo, preencha endereço manualmente.
+3. Reporte ao admin se a integração de CEP está com falhas frequentes.
+
+### "Não foi possível salvar"
+
+1. Verifique campos obrigatórios destacados em vermelho.
+2. Verifique formato (CPF com 11 dígitos, e-mail válido).
+3. Tente novamente após alguns segundos (pode ser falha de rede).
+
+### "CPF inválido"
+
+O CPF não passa na validação matemática. Confira se foi digitado corretamente.
+
+---
+
+## 12.4. Solicitações
+
+### "Já existe solicitação em aberto para este benefício"
+
+O cidadão já tem solicitação pendente. Em vez de criar nova, complete a existente. Use o link sugerido pelo aviso.
+
+### "Documento obrigatório faltando"
+
+A última etapa do modal de criação exige todos os documentos marcados como obrigatórios. Anexe-os ou — se temporariamente indisponível — use **Salvar Rascunho**.
+
+### "Status não permite edição"
+
+Solicitações que já saíram de **Rascunho** geralmente não podem ser editadas, exceto pelo coordenador. Use **Pendenciar** para solicitar correções.
+
+### O cidadão não recebe a notificação de pendência
+
+1. Confirme e-mail/telefone no cadastro.
+2. Verifique a caixa de spam dele.
+3. Tente reenviar manualmente (alguns sistemas têm botão **Reenviar Notificação**).
+4. Se nada, contate o administrador.
+
+---
+
+## 12.5. Pagamentos
+
+### "Não é possível liberar — concessão inativa"
+
+A concessão está suspensa, bloqueada ou cessada. Verifique status na tela da concessão antes de liberar.
+
+### Pagamento ficou em "Erro"
+
+Falha técnica no processamento. Veja a mensagem detalhada na tela do pagamento. Geralmente:
+
+- **Conta bancária inválida** — atualize dados bancários do cidadão e crie novo pagamento.
+- **CPF/PIX não encontrado no banco** — confirme com cidadão; pode ter encerrado a conta.
+- **Erro de comunicação com banco** — tente novamente em algumas horas.
+
+### Cidadão diz que não recebeu
+
+1. Confirme status do pagamento (deve estar **Pago** ou **Confirmado**).
+2. Anexe o comprovante na tela do pagamento.
+3. Peça ao cidadão para verificar extrato (a transferência pode ter caído sob outra descrição).
+4. Se realmente não recebeu, abra chamado com financeiro.
+
+---
+
+## 12.6. Visitas
+
+### "Não consigo agendar — sem permissão"
+
+Seu perfil não inclui essa ação. Peça ao administrador para revisar acesso.
+
+### A visita ficou no calendário mas não consigo registrar
+
+1. Confirme se você é o técnico responsável (ou tem permissão de outros técnicos).
+2. Verifique se o status é **Agendada** (não pode registrar resultado em **Cancelada**).
+3. Atualize a página.
+
+### Não consigo aprovar visita de subordinado
+
+Aprovar visita é função específica de coordenador. Peça ao admin para verificar suas permissões.
+
+---
+
+## 12.7. Documentos
+
+### Upload falhou
+
+1. Verifique tamanho (máximo 5 MB padrão).
+2. Verifique tipo (PDF, JPG, PNG, DOC).
+3. Tente outro navegador.
+4. Reduza qualidade da imagem se for foto pesada.
+
+### "Arquivo corrompido"
+
+O arquivo está danificado. Gere uma nova versão (digitalizar de novo, salvar PDF de novo).
+
+### Não consigo baixar documento
+
+1. Verifique se seu perfil tem acesso a documentos do cidadão.
+2. Tente em outro navegador.
+3. Pode estar acontecendo problema de storage — abra chamado.
+
+---
+
+## 12.8. Notificações
+
+### Sino vermelho não para de aparecer
+
+Acesse a Central de Notificações e clique em **Marcar Todas como Lidas**.
+
+### Toast não aparece
+
+Toasts são exibidos pela aplicação ao receber respostas da API. Se não aparecerem ao executar uma ação, atualize a página, limpe cache (Ctrl+Shift+Del) ou tente outro navegador.
+
+### Notificações duplicadas
+
+Pode acontecer se múltiplas abas estiverem abertas. Feche abas duplicadas.
+
+---
+
+## 12.9. Relatórios e Downloads
+
+### Relatório agendado não chega
+
+1. Verifique se está **Ativo** (não Pausado).
+2. Confirme destinatários corretos.
+3. Veja na lista de execuções se houve falha.
+4. Verifique caixa de spam.
+5. Reexecute manualmente com **Executar Agora**.
+
+### Download em lote travou em "Processando"
+
+1. Aguarde — relatórios grandes podem demorar minutos.
+2. Atualize a página.
+3. Se passar de 1 hora sem progresso, **Cancele** e tente novamente.
+
+### "Nenhum dado encontrado"
+
+Os filtros aplicados não retornaram registros. Reduza filtros ou amplie período.
+
+---
+
+## 12.10. Performance
+
+### O sistema está lento
+
+1. Atualize com F5.
+2. Reduza filtros (períodos longos pesam).
+3. Use paginação menor (10 itens em vez de 100).
+4. Verifique se é problema de rede (teste outras páginas web).
+5. Feche outras abas pesadas.
+6. Se persistir, reporte ao admin com horário e tela específica.
+
+### Tabela com milhares de itens
+
+Use filtros mais restritivos. Listagens grandes têm paginação obrigatória.
+
+### Gráficos não carregam
+
+1. Atualize a página.
+2. Limpe cache.
+3. Tente outro navegador.
+
+---
+
+## 12.11. Mensagens de erro frequentes
+
+| Mensagem | Significado | O que fazer |
+|---|---|---|
+| "Sessão expirada" | Login encerrado por inatividade | Logar novamente |
+| "Acesso negado" | Sem permissão | Pedir ao admin |
+| "CPF já cadastrado" | Cidadão duplicado | Buscar e usar existente |
+| "Operação não permitida no status atual" | Ação não cabe nesse status | Conferir status e fluxo correto |
+| "Erro de conexão com servidor" | Backend off ou rede ruim | Tentar de novo em minutos |
+| "Documento obrigatório" | Anexo faltando | Anexar antes de prosseguir |
+| "Valor inválido" | Campo numérico fora de faixa | Verificar mín/máx do benefício |
+| "Você não tem unidade vinculada" | Cadastro de usuário incompleto | Pedir admin para corrigir |
+
+---
+
+## 12.12. Quando contatar o suporte
+
+Acione o suporte/TI quando:
+
+- Erro 500 persistir por mais de 30 minutos.
+- Dados incorretos exibidos (ex.: nome trocado, valor errado).
+- Funcionalidade documentada não aparece (e admin confirmou que deveria).
+- Suspeita de comprometimento de conta (acesso não autorizado).
+- Problemas com integração de pagamento (banco/PIX).
+
+**Forneça sempre:**
+
+1. Seu **e-mail de usuário** e **unidade**.
+2. **Tela / URL** onde ocorreu (`/solicitacoes/123` etc.).
+3. **Mensagem de erro** exata.
+4. **Horário** aproximado do incidente.
+5. **Captura de tela** (apaga dados sensíveis antes de enviar).
+6. **Passos** que você fez antes do erro.
+
+---
+
+## 12.13. Como reportar um bug
+
+1. Reproduza o erro mais uma vez para confirmar.
+2. Documente os passos exatos.
+3. Capture a tela (Print Screen) e a mensagem de erro.
+4. Envie ao canal oficial de suporte da SEMTAS.
+5. Não compartilhe credenciais ou dados sensíveis.
+
+---
+
+## Fim da documentação
+
+Este foi o último capítulo do Manual do Usuário PGBen. Volte ao [Sumário](./) para revisitar qualquer tópico.
+
+Para sugestões de melhoria desta documentação, contate a coordenação da SEMTAS.
+
+---

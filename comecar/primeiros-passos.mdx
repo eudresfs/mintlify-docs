@@ -1,0 +1,228 @@
+---
+title: Primeiros passos
+description: Login, primeiro acesso, navegação pela interface, perfil de usuário e notificações.
+---
+
+Este capítulo cobre o que todo usuário precisa saber antes de começar a operar: como acessar o sistema, configurar sua conta e se localizar pela interface.
+
+---
+
+## 2.1. Acessando o sistema
+
+O administrador do seu município criará sua conta no PGBen e enviará um **e-mail de boas-vindas** contendo:
+
+- O endereço (URL) do sistema.
+- Seu **e-mail de acesso** (geralmente o e-mail institucional).
+- Um **link de primeiro acesso**, com prazo de validade definido.
+
+> **O link de primeiro acesso tem prazo de validade.** Se expirar antes de você usar, peça ao administrador para reenviar.
+
+### Primeiro acesso
+
+1. Clique no link recebido por e-mail.
+2. Você será direcionado à tela **Redefinir Senha**.
+3. Crie uma senha que atenda aos requisitos:
+   - Mínimo **8 caracteres**.
+   - Pelo menos **1 letra**.
+   - Pelo menos **1 número**.
+4. Confirme a senha digitando-a novamente.
+5. Clique em **Definir Senha**.
+6. Você será redirecionado para a tela de **Entrar**.
+
+### Login no dia a dia
+
+1. Acesse a URL do sistema (geralmente fornecida pela coordenação).
+2. Na tela `/entrar`:
+   - Digite seu **e-mail**.
+   - Digite sua **senha**.
+   - Clique em **Entrar**.
+3. Você será levado para o **painel inicial** correspondente ao seu perfil.
+
+> **Dica:** marque a URL nos favoritos do navegador e use sempre o mesmo navegador para preservar suas preferências (tema, filtros recentes).
+
+### Esqueci minha senha
+
+1. Na tela de login, clique em **Esqueci minha senha**.
+2. Informe o e-mail cadastrado.
+3. Clique em **Enviar link de recuperação**.
+4. Verifique sua caixa de e-mail (e a pasta de spam, se necessário).
+5. Clique no link recebido — ele leva à tela de **Redefinir Senha**.
+6. Defina a nova senha seguindo as mesmas regras do primeiro acesso.
+
+> O link de recuperação também tem **prazo de validade** (consulte com o administrador local). Use assim que receber.
+
+### Conta bloqueada
+
+Após **várias tentativas de login com senha incorreta** (limite definido pelo administrador), sua conta é **temporariamente bloqueada** por segurança. Procure o administrador da unidade para liberar.
+
+---
+
+## 2.2. A interface do sistema
+
+Após o login, você verá uma tela dividida em três áreas principais:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│ HEADER (topo): logo, busca, tema, notificações, perfil     │
+├──────────────┬─────────────────────────────────────────────┤
+│              │                                             │
+│   SIDEBAR    │           CONTEÚDO PRINCIPAL                │
+│   (menu)     │     (lista, formulário, dashboard)          │
+│              │                                             │
+│              │                                             │
+└──────────────┴─────────────────────────────────────────────┘
+```
+
+### Header (cabeçalho)
+
+- **Logo** (à esquerda) — clique para voltar ao painel inicial.
+- **Caminho atual** (breadcrumb) — mostra onde você está (ex.: *Solicitações > Em Análise*).
+- **Tema (sol/lua)** — alterna entre **modo claro** e **modo escuro**.
+- **Sino de notificações** — exibe um badge vermelho com a contagem de notificações não lidas. Clique para ver as últimas; clique em **Ver todas** para ir à [Central de Notificações](#27-central-de-notificações).
+- **Avatar do usuário** — clique para abrir o menu com:
+  - **Meu Perfil** — editar seus dados.
+  - **Alterar Senha**.
+  - **Sair (Logout)**.
+
+### Sidebar (menu lateral)
+
+A sidebar contém os atalhos para cada módulo. **Apenas os módulos que seu perfil pode acessar aparecem** — se você não vê um item, é porque não tem permissão.
+
+- Clique em um item para abrir a tela correspondente.
+- Itens com seta (`>`) são **grupos** que se expandem ao clicar (ex.: *Solicitações* expande em *Em Análise*, *Pendentes*, *Aprovadas*…).
+- O **item atual** fica destacado com uma cor de fundo.
+- O botão de **recolher/expandir** colapsa a sidebar para mostrar apenas ícones — útil em monitores menores.
+
+### Conteúdo principal
+
+É onde você efetivamente trabalha: tabelas de dados, formulários, dashboards. Cada capítulo seguinte detalha as telas específicas.
+
+---
+
+## 2.3. Tabelas e listagens
+
+A maioria das telas mostra uma **tabela** com filtros e ações. O padrão é sempre o mesmo:
+
+### Anatomia de uma tabela
+
+- **Barra de busca** — digite parte do texto e a tabela filtra automaticamente.
+- **Filtros** — botões/seletores acima da tabela (status, unidade, período, etc.).
+- **Cabeçalho ordenável** — clique no nome da coluna para ordenar (a seta ↑↓ indica a direção).
+- **Linhas** — cada linha é um registro (uma solicitação, um cidadão…).
+- **Ações** — ícones na última coluna ou em um menu **(⋮)**.
+- **Paginação** — no rodapé: escolha quantos itens por página (10, 25, 50, 100) e navegue entre páginas.
+- **Seleção em massa** — caixinhas à esquerda permitem selecionar várias linhas para ações em lote.
+
+### Aplicar filtros
+
+1. Clique no filtro (ex.: **Status**).
+2. Marque uma ou várias opções.
+3. Clique em **Aplicar** (ou aguarde — alguns filtros aplicam automaticamente).
+4. Os filtros ativos aparecem como **chips** acima da tabela. Clique no `×` de um chip para removê-lo.
+5. Use **Limpar filtros** para resetar tudo.
+
+### Exportar para Excel/PDF
+
+Em listagens com botão **Downloads** ou **Exportar**, você pode gerar:
+
+- **PDF** — formatado, com cabeçalho e tabela.
+- **Excel (.xlsx)** — com várias abas (resumo, detalhes, métricas).
+- **CSV** — texto simples para análise externa.
+
+O download pode ser **imediato** (arquivo pequeno) ou **assíncrono** (arquivo grande, gerado em segundo plano). No caso assíncrono, você é redirecionado à tela [Downloads](09-relatorios-downloads.md#downloads-em-lote) para acompanhar o progresso.
+
+---
+
+## 2.4. Formulários e validações
+
+### Validação em tempo real
+
+Conforme você preenche os campos, o sistema valida cada um:
+
+- **Verde / sem aviso** — campo válido.
+- **Borda vermelha + mensagem** — campo inválido (ex.: CPF mal formado, e-mail sem `@`).
+
+O botão **Salvar** ou **Próximo** fica desabilitado enquanto houver erros.
+
+### Formulários multi-etapa
+
+Operações complexas (ex.: criar uma solicitação) são divididas em **passos**:
+
+```
+[1]──[2]──[3]──[4]──[5]──[6]
+ ✓    ✓    ●
+```
+
+- **Próximo** valida o passo atual antes de avançar.
+- **Voltar** retorna sem perder o que já foi preenchido.
+- **Cancelar** ou **X** descarta — o sistema pergunta antes para evitar perda.
+
+### Salvando rascunhos
+
+Em alguns formulários (notadamente solicitações), há um botão **Salvar como Rascunho**. Isso permite parar e continuar depois sem perder dados — ideal para casos em que o cidadão ainda não trouxe todos os documentos.
+
+---
+
+## 2.5. Upload de documentos
+
+Sempre que houver um campo de **Anexar documentos**:
+
+1. **Arraste e solte** o arquivo na área indicada **ou** clique para abrir o seletor.
+2. Tipos aceitos: **PDF, JPG, PNG, DOC** (varia por contexto).
+3. Tamanho máximo por arquivo: **5 MB** (padrão; pode variar por módulo).
+4. O upload mostra uma barra de progresso.
+5. Após enviar, aparece a miniatura/ícone do arquivo. Clique para **visualizar** ou no `×` para **remover**.
+
+> Documentos com **dados sensíveis** (CPF, RG, laudos médicos) são automaticamente classificados pelo sistema. Todo acesso a eles é registrado na auditoria.
+
+---
+
+## 2.6. Modo claro / modo escuro
+
+O sistema suporta dois temas. Para alternar, clique no ícone de **sol/lua** no header. Sua escolha é salva no navegador e mantida em sessões futuras.
+
+> O tema também respeita a preferência do seu sistema operacional na primeira visita.
+
+---
+
+## 2.7. Central de Notificações
+
+O PGBen envia notificações para você sempre que algo importante acontece (uma solicitação foi aprovada, uma visita foi agendada, um pagamento foi liberado…).
+
+### Acessando
+
+- **Sino no header** — abre um menu rápido com as últimas notificações.
+- **`/notificacoes`** — central completa, com filtros (lidas/não lidas, tipo) e busca.
+
+### Ações
+
+- **Clicar na notificação** — leva direto à tela relacionada (a solicitação, o pagamento…).
+- **Marcar como lida** — botão individual ou **Marcar todas como lidas**.
+- **Atualizar** — busca novas notificações imediatamente.
+
+### Notificações em tempo real
+
+Quando uma notificação chega enquanto você está com o sistema aberto, ela aparece como **toast** no canto inferior direito, e o sino mostra o contador atualizado.
+
+---
+
+## 2.8. Meu perfil
+
+Acesse pelo avatar no header → **Meu Perfil** (ou em `/perfil`).
+
+Você pode editar:
+
+- **Dados pessoais** — nome, telefone, foto.
+- **Endereço**.
+- **Senha** — botão **Alterar Senha** abre uma janela onde você confirma a senha atual e define a nova.
+
+> Você **não pode** alterar seu CPF, e-mail, unidade ou perfil de acesso. Para qualquer um desses, peça ao administrador.
+
+---
+
+## 2.9. Sair (Logout)
+
+- Avatar → **Sair**.
+- O token de autenticação tem prazo de expiração (~1 hora). Após esse período, será necessário fazer login novamente.
+
+> Sempre faça logout em computadores compartilhados.

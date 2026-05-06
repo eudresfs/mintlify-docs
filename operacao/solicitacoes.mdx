@@ -1,0 +1,350 @@
+---
+title: Solicitações de benefício
+description: Criar, analisar, aprovar, indeferir e acompanhar solicitações.
+---
+
+Este capítulo é o **núcleo operacional** do PGBen. A solicitação é o pedido formal que percorre todo o ciclo até virar — ou não — uma concessão de benefício.
+
+---
+
+## 5.1. Estados da solicitação
+
+Toda solicitação passa por estados conhecidos. Entender essa máquina de estados ajuda a saber o que fazer em cada momento.
+
+```
+       ┌──────────┐
+       │ RASCUNHO │  (criada, ainda não enviada)
+       └────┬─────┘
+            ▼
+       ┌──────────┐
+       │  ABERTA  │  (dados em preenchimento)
+       └────┬─────┘
+            ▼
+    ┌───────────────┐
+    │  EM ANÁLISE   │ ◄─────┐
+    └───┬──────┬────┘       │
+        │      │            │
+        ▼      ▼            │
+   ┌────────┐ ┌──────────┐  │
+   │PENDENTE│ │AGUARDANDO│  │  (resolveu pendência → reanalisa)
+   │        │ │DOCUMENTOS│  │
+   └───┬────┘ └─────┬────┘  │
+       │            │       │
+       └────────────┴───────┘
+            │
+            ▼
+   ┌───────────────────┐
+   │ APROVADA          │───► gera CONCESSÃO
+   │ INDEFERIDA        │───► fim (pode haver recurso)
+   │ CANCELADA         │
+   └───────────────────┘
+```
+
+### Significado de cada status
+
+| Status | O que significa | O que fazer |
+|---|---|---|
+| **Rascunho** | Solicitação criada mas ainda não enviada para análise | Continuar preenchendo, anexar documentos, e enviar |
+| **Aberta** | Dados ou documentos incompletos | Completar para enviar para análise |
+| **Em Análise** | Técnico/coordenador está avaliando | Aguardar decisão; eventualmente registrar pendência |
+| **Pendente** | Há tarefas atribuídas ao cidadão (enviar documento, comparecer) | Aguardar o cidadão; reenvio ao status anterior |
+| **Aguardando Documentos** | Notificação enviada ao cidadão pedindo documento | Aguardar upload |
+| **Aguardando Autorização** | Solicitação criada por fornecedor, aguarda aprovação | Coordenador aprova/rejeita |
+| **Aprovada** | Elegibilidade confirmada | Sistema gera a concessão e os pagamentos |
+| **Indeferida** | Pedido negado | Comunicar o cidadão; eventual recurso |
+| **Liberada** / **Em Processamento** | Solicitação aprovada já em fase de pagamento | Acompanhar pagamentos |
+| **Executada** | Workflow automatizado executado com sucesso | Apenas histórico |
+| **Erro de Execução** | Falha no processamento automatizado | Investigar log; pode requerer reprocessamento |
+| **Concluída** | Processo finalizado com sucesso | Apenas histórico |
+| **Cancelada** / **Arquivada** | Encerrada antes da decisão | Apenas histórico |
+
+---
+
+## 5.2. Listas e filas de trabalho
+
+O menu **Solicitações** se desdobra em várias filas, cada uma com solicitações em um determinado status. Isso facilita o trabalho diário:
+
+| Tela | Para quem |
+|---|---|
+| `/solicitacoes` (Todas) | Visão geral com qualquer status |
+| `/solicitacoes/rascunho` | Técnico — terminar de preencher |
+| `/solicitacoes/abertas` | Técnico — completar e enviar |
+| `/solicitacoes/em-analise` | Coordenador / técnico — analisar |
+| `/solicitacoes/pendentes` | Técnico — acompanhar pendências do cidadão |
+| `/solicitacoes/aprovadas` | Acompanhamento — virou concessão |
+| `/solicitacoes/indeferidas` | Histórico — possíveis recursos |
+| `/solicitacoes/canceladas` | Histórico |
+| `/solicitacoes/concluidas` | Histórico |
+
+### Filtros disponíveis em todas as listas
+
+- **Status** (multi).
+- **Tipo de Benefício** (multi).
+- **Unidade** (multi).
+- **Técnico responsável** (multi).
+- **Prioridade** (Urgente, Alta, Média, Normal, Baixa).
+- **Determinação Judicial** (sim/não).
+- **Apenas Renovações** (sim/não).
+- **Período** (data início — data fim).
+
+### Busca
+
+Encontra por **protocolo**, **nome do beneficiário** ou **nome do benefício**.
+
+---
+
+## 5.3. Criar uma nova solicitação
+
+Esta é a operação mais frequente do dia a dia. Pode ser feita por **técnicos** e **coordenadores**.
+
+### Antes de começar
+
+Tenha em mãos:
+- O **CPF** ou **NIS** do cidadão (já cadastrado, ou prepare-se para cadastrar).
+- O **tipo de benefício** que será solicitado.
+- Os **documentos comprobatórios** digitalizados (PDF, JPG, PNG; até 5 MB cada por padrão).
+
+### Passo a passo
+
+1. Em qualquer tela de solicitação, clique em **Nova Solicitação**.
+2. Um **modal multi-etapa** abre.
+
+#### Etapa 1 — Buscar Beneficiário
+
+- Digite o nome, CPF ou NIS no campo de busca.
+- Clique no cidadão correto na lista de resultados.
+- Se ele não existir, clique em **Cadastrar Novo Beneficiário** (você é redirecionado ao formulário do [capítulo 4](04-beneficiarios.md)).
+
+#### Etapa 2 — Tipo de Solicitante
+
+- **O próprio beneficiário** — pula a próxima etapa.
+- **Um responsável legal** — abre formulário com:
+  - CPF do solicitante.
+  - Nome.
+  - Telefone, e-mail.
+  - Relação com o beneficiário (Pai, Mãe, Cônjuge, Curador, Outro).
+
+#### Etapa 3 — Selecionar Benefício
+
+- Lista de benefícios **ativos** disponíveis para esta unidade.
+- Clique no desejado.
+- Se já existe uma solicitação **em aberto** para o mesmo cidadão+benefício, o sistema avisa e pede confirmação.
+
+#### Etapa 4 — Formulário Específico do Benefício
+
+Cada tipo de benefício tem um formulário próprio. Exemplos:
+
+**Aluguel Social:**
+- Motivo da demanda (Despejo, Situação de rua, Habitação insalubre, Violência doméstica).
+- Valor do aluguel pretendido.
+- Duração estimada (em meses).
+- Especificações adicionais.
+
+**Cesta Básica:**
+- Motivo da vulnerabilidade.
+- Tamanho da família.
+- Restrições alimentares (alergia, vegetariano).
+
+**Natalidade — contexto pré-natal (gestante):**
+- Realiza pré-natal? Atendida em PSF/UBS?
+- Gravidez de risco?
+- Data provável do parto.
+- Gêmeos / trigêmeos.
+
+**Natalidade — contexto pós-natal (bebê nascido):**
+- Data de nascimento.
+- Nome do recém-nascido.
+- Número da certidão de nascimento + cartório.
+- Peso ao nascimento.
+
+**Ataúde (Funeral):**
+- Data do óbito.
+- Local do óbito.
+- Data de autorização do benefício.
+- Grau de parentesco do solicitante com o falecido.
+
+**Passagem:**
+- Destino.
+- Motivo do deslocamento.
+- Quantidade de passageiros.
+- Aérea ou rodoviária.
+
+#### Etapa 5 — Upload de Documentos
+
+A lista de documentos **obrigatórios** muda conforme o benefício escolhido. Exemplo (Aluguel Social com motivo "Despejo"):
+
+- CPF (obrigatório).
+- RG ou CNH (obrigatório).
+- Comprovante de residência (obrigatório).
+- Comprovante de renda (obrigatório se família tem renda).
+- Notificação de despejo (obrigatório para este motivo).
+- ⭕ Sentença judicial (opcional).
+- ⭕ Fotos do imóvel (opcional, fortalece o pedido).
+
+Para cada documento:
+1. Arraste o arquivo ou clique na área para selecionar.
+2. Aguarde o upload (barra de progresso).
+3. Visualize a miniatura para confirmar.
+4. Em caso de erro (arquivo corrompido, tipo inválido), o sistema avisa e pede para enviar de novo.
+
+#### Etapa 6 — Revisão
+
+- O sistema mostra um **resumo** de tudo que foi preenchido.
+- Confira atentamente.
+- Você tem **dois botões**:
+  - **Salvar Rascunho** — salva sem enviar para análise. Ideal se ainda faltam documentos.
+  - **Enviar Solicitação** — encaminha para análise técnica (status muda para *Em Análise*).
+
+3. Após enviar, o sistema:
+   - Gera o **número de protocolo** (formato `PGBEN-AAAA-NNNNNN`).
+   - Notifica o cidadão (e-mail / SMS, se cadastrado).
+   - Notifica os técnicos da unidade responsáveis pela análise.
+
+> Você pode acompanhar a solicitação criada em `/solicitacoes/em-analise`.
+
+---
+
+## 5.4. Acompanhar uma solicitação
+
+Acesse pelo menu ou clique no protocolo em qualquer listagem. A tela `/solicitacoes/detalhes/:id` mostra:
+
+### Abas / seções
+
+- **Solicitação** — dados gerais, status atual, data de abertura, técnico responsável, prioridade.
+- **Formulário do Benefício** — todos os campos específicos preenchidos. Editável se status = Rascunho.
+- **Documentos** — todos os anexos, com botões de **Visualizar**, **Baixar** e **Excluir** (apenas em rascunho).
+- **Pendências** — tarefas atribuídas ao cidadão (se houver).
+- **Visitas Técnicas** — visitas relacionadas e seus resultados.
+- **Timeline** — histórico cronológico de tudo que aconteceu (mudanças de status, comentários, documentos).
+
+### Botões de ação (variam conforme status e perfil)
+
+- **Editar** — só em rascunho ou com permissão especial.
+- **Enviar para Análise** — submete a solicitação aberta.
+- **Aprovar** — coordenador, em análise.
+- **Indeferir** — coordenador, em análise (pede motivo).
+- **Pendenciar** — em análise (cria pendência para o cidadão complementar).
+- **Agendar Visita Técnica** — em análise (vai para o módulo de monitoramento).
+- **Reabrir Solicitação** — após indeferimento (modal próprio).
+- **Cancelar** — encerra sem decisão (pede motivo).
+- **Ir para Concessão** — atalho que aparece quando a solicitação foi aprovada (leva à concessão gerada).
+- **Reverter Aprovação** — disponível em casos específicos para coordenador desfazer aprovação recente.
+
+---
+
+## 5.5. Pendenciar (solicitar complementação)
+
+Use quando, durante a análise, você identifica que falta algo do cidadão.
+
+1. Na tela de detalhes, clique em **Pendenciar**.
+2. O modal *Adicionar Pendências* abre.
+3. Descreva a pendência (ex.: "Enviar comprovante de residência atualizado, máximo 90 dias").
+4. Defina o **prazo** (conforme parâmetro configurado pelo administrador).
+5. Confirme.
+5. O sistema:
+   - Muda o status da solicitação para **Pendente** ou **Aguardando Documentos**.
+   - Notifica o cidadão (e-mail / SMS) com o que precisa ser enviado e o prazo.
+6. Quando o cidadão envia (ou quando você marca como resolvida), o status volta para **Em Análise**.
+
+> Se o cidadão não cumprir a pendência no prazo, ele é notificado. Após o prazo, a equipe pode **indeferir** por falta de documentação.
+
+---
+
+## 5.6. Aprovar uma solicitação
+
+> Geralmente restrito a Coordenador / Gestor.
+
+1. Acesse `/solicitacoes/em-analise`.
+2. Filtre/busque a solicitação a decidir.
+3. Abra os detalhes.
+4. Verifique:
+   - Dados do beneficiário e da família.
+   - Score de vulnerabilidade.
+   - Documentos anexados.
+   - Resultado de visita técnica (se houve).
+   - Histórico anterior do cidadão (outras solicitações).
+5. Clique em **Aprovar Solicitação**.
+6. Preencha (modal de confirmação):
+   - **Valor concedido** (pode ser igual ou diferente do pedido inicial, conforme regra do benefício).
+   - **Data de início**.
+   - **Duração / data de fim** (para benefícios continuados).
+   - **Observações internas** (opcional).
+7. Confirme.
+8. O sistema:
+   - Muda o status para **Aprovada**.
+   - Cria automaticamente uma **Concessão**.
+   - Gera os **pagamentos** (parcelas) conforme o tipo de benefício.
+   - Notifica o cidadão.
+
+---
+
+## 5.7. Indeferir uma solicitação
+
+> Geralmente restrito a Coordenador / Gestor.
+
+1. Na tela de detalhes, clique em **Indeferir**.
+2. Selecione um **motivo de rejeição** na lista. Os motivos disponíveis são configurados por benefício pelo administrador.
+3. Escreva uma **justificativa** clara e objetiva — ela vai para o cidadão.
+4. Confirme.
+5. O sistema:
+   - Muda status para **Indeferida**.
+   - Notifica o cidadão com a justificativa.
+
+> Se a regra do município permitir, é possível **reabrir** a solicitação posteriormente para nova análise — pelo botão **Reabrir Solicitação** na tela de detalhes.
+
+> **Sempre seja claro e respeitoso** na justificativa — ela impacta diretamente a percepção do cidadão sobre o serviço.
+
+---
+
+## 5.8. Determinação Judicial
+
+Quando uma solicitação decorre de **decisão judicial**:
+
+1. Marque a flag **Determinação Judicial** ao criar (ou edite depois).
+2. Anexe a cópia da **decisão**.
+3. A solicitação recebe **prioridade obrigatória** (geralmente Urgente ou Alta).
+4. Aparece em listagens com **badge especial** (ícone de balança ⚖).
+5. Critérios de elegibilidade habituais podem ser **flexibilizados** conforme determina o juiz.
+
+---
+
+## 5.9. Renovação de benefício continuado
+
+Para benefícios continuados (como Aluguel Social), a renovação é **iniciada manualmente** pelo técnico antes do vencimento:
+
+1. Acesse a concessão atual (ver capítulo [6. Concessões](06-concessoes-pagamentos.md)).
+2. Clique em **Renovar** (a opção fica disponível conforme a configuração de antecedência do tipo de benefício).
+3. Os campos vêm pré-preenchidos com base na concessão anterior.
+4. Atualize:
+   - Documentos vencidos (comprovantes recentes).
+   - Mudanças na composição familiar / renda.
+5. A solicitação de renovação segue o **mesmo fluxo de análise** das demais.
+6. Se aprovada, **estende** a concessão (não cria uma nova).
+
+> A renovação **não acontece sozinha**. Se ninguém iniciar o processo a tempo, a concessão **vence** e os pagamentos cessam. Acompanhe os vencimentos pelo [Painel Gerencial](08-administracao.md) ou pela tela de Concessões.
+
+---
+
+## 5.10. Exportar solicitações
+
+Em qualquer listagem:
+
+1. Aplique filtros desejados.
+2. (Opcional) selecione linhas específicas com checkbox.
+3. Clique em **Downloads** ou **Exportar**.
+4. Escolha formato: **PDF**, **Excel** ou **CSV**.
+5. Para volumes grandes, o sistema processa em segundo plano e notifica quando o arquivo estiver pronto (vá a [Downloads](09-relatorios-downloads.md)).
+
+> Toda exportação é **registrada na auditoria**.
+
+---
+
+## 5.11. Boas práticas
+
+- **Use rascunho** quando o cidadão sai sem todos os documentos. Continue depois.
+- **Anexe documentos legíveis** — fotos com pouca luz ou cortadas atrasam a análise.
+- **Preencha todos os campos do formulário** — mesmo os opcionais ajudam o coordenador a decidir.
+- **Comunique-se via pendência**, não fora do sistema — fica registrado.
+- Evite: **Não aprove em massa** sem revisar — cada caso tem suas particularidades.
+- Evite: **Não indefira sem justificativa clara** — o cidadão tem direito de saber o motivo.
+- Evite: **Não duplique solicitações** — se já existe uma em aberto, complete-a em vez de criar nova.

@@ -1,0 +1,105 @@
+---
+title: Introdução ao PGBen
+description: O que é o PGBen, perfis de usuário, categorias de benefício e ciclo de vida do benefício.
+---
+
+## O que é o PGBen?
+
+O **PGBen — Plataforma de Gestão de Benefícios Eventuais** é o sistema oficial utilizado pelas Secretarias Municipais de Assistência Social (SEMTAS) para gerenciar a concessão e o acompanhamento de **benefícios eventuais** — auxílios pontuais previstos pela Lei Orgânica de Assistência Social (LOAS) e pelo Sistema Único de Assistência Social (SUAS).
+
+Com o PGBen, a equipe da assistência social consegue:
+
+- Cadastrar cidadãos e suas famílias com dados sociais completos.
+- Registrar solicitações de benefício, com documentação exigida.
+- Analisar a elegibilidade de cada solicitação.
+- Aprovar, indeferir, suspender ou cessar concessões.
+- Liberar e acompanhar pagamentos.
+- Realizar visitas técnicas domiciliares de acompanhamento.
+- Gerar relatórios gerenciais e prestações de contas.
+- Atender exigências da LGPD com auditoria completa.
+
+---
+
+## Para que serve
+
+Antes do PGBen, processos eram feitos em planilhas, formulários impressos e sistemas isolados. O PGBen centraliza:
+
+- **Histórico completo** de cada cidadão e seus benefícios.
+- **Workflow padronizado** de análise (mesmos critérios em todas as unidades).
+- **Auditoria automática** de todas as ações para conformidade com a LGPD.
+- **Integração com pagamentos** (PIX, depósito, presencial).
+- **Notificações** para beneficiários (e-mail/SMS) e equipe interna (in-app).
+- **Relatórios** prontos para gestão e prestação de contas.
+
+---
+
+## Categorias de Benefício
+
+O sistema trabalha com **quatro grandes categorias** de benefícios eventuais:
+
+### Natalidade
+Apoio à mãe, ao bebê e à família no contexto do nascimento. O sistema suporta dois contextos: **pré-natal** (gestante) e **pós-natal** (bebê já nascido), cada um com campos específicos.
+
+### Morte (Funeral / Ataúde)
+Custeio de despesas funerárias. O tipo de óbito é registrado conforme classificação interna (natural, acidente, violenta, suicídio).
+
+### Vulnerabilidade Temporária
+Auxílio em situações de risco, perdas e danos que afetam o acesso a itens essenciais. Inclui:
+- **Cesta Básica**: alimentação em situações de insegurança alimentar.
+- **Aluguel Social**: habitação temporária por despejo, situação de rua, habitação insalubre ou violência doméstica.
+- **Passagem**: deslocamento da pessoa.
+- **Outro**: benefícios eventuais adicionais configurados pelo município.
+
+### Calamidade Pública
+Apoio a populações afetadas por desastres naturais (enchentes, deslizamentos, tempestades).
+
+> Os benefícios disponíveis em cada município podem variar conforme a configuração feita pelo administrador local. Consulte a tela **Benefícios** para ver os benefícios ativos no seu município.
+
+---
+
+## Perfis de Usuário
+
+O PGBen usa **controle de acesso baseado em papéis (RBAC)**. Cada usuário tem um ou mais perfis, e cada perfil tem permissões específicas.
+
+| Perfil | Quem é | O que faz |
+|---|---|---|
+| **Administrador** | Equipe de TI / gestão sistêmica | Cadastra usuários, unidades, tipos de benefício, orçamento, integrações. Acesso total. |
+| **Gestor / Coordenador** | Coordenação da SEMTAS | Aprova/indefere solicitações, libera pagamentos, vê dashboards e relatórios gerenciais, gerencia advertências. |
+| **Técnico / Assistente Social** | Equipe de atendimento (CRAS, CREAS) | Cadastra cidadãos, cria solicitações, analisa documentação, agenda e realiza visitas técnicas. |
+| **Auditor** | Controle interno / corregedoria | Acesso somente leitura aos logs de auditoria e relatórios. |
+| **Fornecedor** | Restaurantes, imobiliárias, transportadoras parceiras | Recebem autorizações, complementam solicitações, confirmam recebimento. |
+| **Cidadão / Beneficiário** | Pessoa que solicita o benefício | (Quando habilitado) consulta o status da própria solicitação e recebe notificações. |
+
+> **Permissões por unidade**: cada usuário (exceto administrador) só enxerga e edita dados da sua **unidade de vinculação** (ex.: CRAS Centro). Esse isolamento é automático e obrigatório.
+
+---
+
+## Estrutura organizacional
+
+O PGBen organiza os dados em uma hierarquia:
+
+```
+Município (instalação do sistema)
+└── Unidades (CRAS, CREAS, CENTRO_POP, SEMTAS, OUTRO)
+    └── Setores (configuráveis por município)
+        └── Usuários (com seus perfis e permissões)
+```
+
+Cidadãos e solicitações pertencem sempre a uma **unidade**. Em transferências (mudança de bairro, por exemplo), o cidadão pode ser **transferido de unidade** mantendo todo o histórico.
+
+---
+
+## Ciclo de vida de um benefício
+
+Um benefício no PGBen percorre estas grandes etapas:
+
+1. **Cadastro do cidadão** — dados pessoais, família, situação social.
+2. **Solicitação** — escolha do benefício, preenchimento do formulário, envio de documentos.
+3. **Análise técnica** — verificação de elegibilidade pela equipe.
+4. **Decisão** — aprovação ou indeferimento.
+5. **Concessão** — registro do benefício ativo, com prazo de validade.
+6. **Pagamento(s)** — liberação das parcelas (mensais, em alguns casos; pontual, em outros).
+7. **Monitoramento** — visitas técnicas periódicas para benefícios continuados.
+8. **Encerramento** — por fim do prazo, óbito, descumprimento de critérios ou solicitação do beneficiário.
+
+Os capítulos seguintes descrevem cada etapa em detalhes, do ponto de vista de quem opera o sistema.
