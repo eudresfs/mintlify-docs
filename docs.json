@@ -1,8 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
-  "name": "PGBen — Manual do Usuário",
-  "description": "Documentação operacional da Plataforma de Gestão de Benefícios Eventuais.",
+  "theme": "mint",
+  "name": "PGBen",
+  "description": "Documentação para quem opera o sistema todos os dias. Cadastro, análise, concessão, pagamento, monitoramento.",
   "colors": {
     "primary": "#137f93",
     "light": "#26a7be",
@@ -91,10 +91,7 @@
       }
     ]
   },
-  "logo": {
-    "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
-  },
+  "logo": "/logo/light.png",
   "navbar": {
     "links": [],
     "primary": {
@@ -105,5 +102,11 @@
   },
   "footer": {
     "socials": {}
+  },
+  "search": {
+    "prompt": "Pesquise ou pergunte"
+  },
+  "api": {
+    "openapi": "https://dev-api-semtas-natal.pgben.com.br/openapi.json"
   }
 }
