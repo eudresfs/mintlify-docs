@@ -108,5 +108,8 @@
   },
   "api": {
     "openapi": "https://dev-api-semtas-natal.pgben.com.br/openapi.json"
+  },
+  "banner": {
+    "content": "Documentação em desenvolvimento. Algumas informações podem estar desatualizadas ou incorretas."
   }
 }
