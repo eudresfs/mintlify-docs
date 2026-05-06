@@ -8,7 +8,7 @@
     "light": "#26a7be",
     "dark": "#106b7a"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/logo/light.png",
   "icons": {
     "library": "lucide"
   },
@@ -42,7 +42,7 @@
     "groups": [
       {
         "group": "Para começar",
-        "icon": "play",
+        "icon": "rocket",
         "expanded": true,
         "pages": [
           "comecar/introducao",
@@ -52,7 +52,7 @@
       },
       {
         "group": "Operação",
-        "icon": "cog",
+        "icon": "workflow",
         "expanded": true,
         "pages": [
           "operacao/beneficiarios",
@@ -63,7 +63,7 @@
       },
       {
         "group": "Gestão",
-        "icon": "shield",
+        "icon": "settings",
         "expanded": true,
         "pages": [
           "gestao/administracao",
@@ -73,8 +73,8 @@
       },
       {
         "group": "Suporte",
-        "icon": "circle-help",
-        "expanded": false,
+        "icon": "life-buoy",
+        "expanded": true,
         "pages": [
           "suporte/faq",
           "suporte/troubleshooting"
@@ -82,7 +82,7 @@
       },
       {
         "group": "Apêndice",
-        "icon": "book-open",
+        "icon": "book-marked",
         "expanded": false,
         "pages": [
           "apendice/indice-remissivo",

@@ -188,10 +188,16 @@ pre {
   color: rgb(128 207 220);
 }
 
-/* Logo navbar size */
-img.nav-logo {
-  max-width: 140px;
-  height: auto;
+/* Logo navbar — força aspect ratio 1:1 (PNG nativo 650x650) */
+img.nav-logo,
+nav img,
+header img[alt*="logo" i],
+header img[src*="logo"] {
+  max-height: 32px !important;
+  width: auto !important;
+  height: 32px !important;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
 }
 
 /* Footer marca tipográfica */
