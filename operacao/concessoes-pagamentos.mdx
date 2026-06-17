@@ -1,300 +1,208 @@
 ---
 title: Concessões e pagamentos
-description: Gerenciar benefícios ativos, liberar parcelas, suspender, cessar e reativar concessões.
+description: Gerenciar benefícios concedidos, status, parcelas, comprovantes, anexos, estornos e reavaliação.
 ---
 
-Após uma solicitação ser aprovada, o sistema cria uma **Concessão** — o registro do benefício ativo — e os respectivos **Pagamentos** (parcelas). Este capítulo explica como gerenciar ambos.
+Depois que uma solicitacao e aprovada, o sistema cria uma **concessao** e seus **pagamentos**. A concessao representa o beneficio ativo ou historico. Os pagamentos representam parcelas, repasses ou execucoes financeiras vinculadas.
 
----
+## 6.1. Concessoes
 
-## 6.1. Concessões
+Acesse **Concessoes** ou `/concessoes`.
 
-A **Concessão** representa o benefício efetivamente concedido. Tem datas de início e fim, valor, beneficiário e os pagamentos associados.
+### Listagem
 
-### Acessando
-
-Menu **Concessões** (ou `/concessoes`).
-
-A tabela mostra:
-
-| Coluna | Conteúdo |
+| Campo | Uso |
 |---|---|
-| **Protocolo** | Número da solicitação aprovada (com badges para Renovação / Determinação Judicial) |
-| **Beneficiário** | Nome + CPF |
-| **Benefício** | Tipo |
-| **Valor mensal** | R$ |
-| **Status** | Apto, Ativo, Suspenso, Bloqueado, Cessado, Cancelado, Desistência, Aguardando Reavaliação |
-| **Início / Fim** | Período de validade |
-| **Unidade / Técnico** | |
+| **Protocolo** | Solicitacao que originou a concessao. |
+| **Beneficiario** | Pessoa atendida. |
+| **Beneficio** | Tipo de beneficio concedido. |
+| **Valor** | Valor mensal, total ou configurado conforme beneficio. |
+| **Status** | Situacao atual da concessao. |
+| **Inicio e fim** | Periodo de validade. |
+| **Unidade e tecnico** | Referencia operacional. |
 
-### Filtros
+### Status de concessao
 
-- **Status da Concessão** (multi).
-- **Tipo de Benefício** (multi).
-- **Unidade** (multi).
-- **Prioridade** (multi).
-- **Apenas Renovações** (sim/não).
-- **Determinação Judicial** (sim/não).
-- **Período** de início.
-
-### Status da concessão — significado
-
-| Status | Significa | Pagamentos |
-|---|---|---|
-| **Apto** | Recém-criada, aguardando ativação | Bloqueados |
-| **Ativo** | Benefício em vigor, pagamentos em processamento | Liberados conforme cronograma |
-| **Suspenso** | Pausa temporária (avaliação, regularização) | Pausados |
-| **Bloqueado** | Suspeita de fraude / irregularidade grave | Bloqueados imediatamente |
-| **Cessado** | Encerrado (fim de prazo, óbito, descumprimento) | Não geram mais |
-| **Cancelado** | Cancelado a pedido do cidadão | Não geram mais |
-| **Desistência** | Beneficiário desistiu | Não geram mais |
-| **Aguardando Reavaliação** | Em revisão periódica obrigatória | Pausados |
-
----
-
-## 6.2. Detalhes da concessão
-
-Clique no protocolo na lista, ou em `/concessoes/detalhes/:id`.
-
-### Abas
-
-- **Concessão** — dados gerais (benefício, valor, datas, beneficiário, status).
-- **Pagamentos** — histórico de parcelas, datas, valores, status.
-- **Histórico** — log de alterações de status, ações realizadas, autor.
-- **Vulnerabilidade** — exibida apenas quando há resultado de avaliação registrado para a concessão.
-
-### Ações disponíveis (por status)
-
-| Status atual | Ações possíveis |
+| Status | Significado operacional |
 |---|---|
-| Ativo | Suspender, Bloquear, Cessar, Upload Comprovante |
-| Suspenso | Reativar, Cessar |
-| Bloqueado | Desbloquear (após investigação), Cessar |
-| Cessado | Reativar (cria nova análise) |
-| Aguardando Reavaliação | Aprovar Reavaliação, Cessar |
+| **Apto** | Concessao criada, aguardando ativacao ou proximo passo. |
+| **Ativo** | Beneficio em vigor. |
+| **Suspenso** | Pausa temporaria enquanto ha regularizacao ou avaliacao. |
+| **Bloqueado** | Impedimento mais forte por suspeita, inconsistencia ou decisao. |
+| **Cessado** | Beneficio encerrado antes ou ao fim do prazo. |
+| **Cancelado** | Cancelamento formal do beneficio. |
+| **Desistencia** | Beneficiario desistiu do beneficio. |
+| **Aguardando Reavaliacao** | Concessao precisa de nova avaliacao, comum em fluxos com determinacao judicial. |
 
----
+<Warning>
+Prazo indeterminado nao e uma opcao comum de cadastro. Ele depende de determinacao judicial e quantidade de parcelas igual a zero.
+</Warning>
 
-## 6.3. Suspender uma concessão
+## 6.2. Detalhe da concessao
 
-Use quando há **dúvida temporária** sobre a regularidade — por exemplo, mudança de endereço sem comunicação, ausência em visita, suspeita inicial.
+Abra a concessao pela lista ou pela rota `/concessoes/detalhes/:id`.
 
-1. Na tela de detalhes, clique em **Suspender**.
-2. Informe o **motivo** (texto + categoria pré-definida).
-3. Confirme.
-4. Efeito:
-   - Status muda para **Suspenso**.
-   - Pagamentos pendentes são **pausados** (não cancelados).
-   - O cidadão é notificado.
-   - Você pode reativar depois sem perder histórico.
+Abas comuns:
 
----
+- **Concessao**: dados principais, beneficio, datas, valor e status.
+- **Pagamentos**: parcelas, status, comprovantes e historico financeiro.
+- **Historico**: mudancas de status e acoes realizadas.
+- **Vulnerabilidade**: resultado de avaliacao quando existir.
+- **Solicitacao**: origem da concessao e dados do processo.
 
-## 6.4. Bloquear uma concessão
+## 6.3. Acoes em concessao
 
-Use em **suspeita confirmada de fraude** ou irregularidade grave.
+As acoes dependem do status atual e do acesso liberado.
 
-1. Tela de detalhes → **Bloquear**.
-2. Justifique detalhadamente (ficará na auditoria).
-3. Anexe documentação que motiva o bloqueio.
-4. Confirme.
-5. Efeito:
-   - Status muda para **Bloqueado**.
-   - Pagamentos pendentes ficam **inacessíveis** (mais restritivo que suspenso).
-   - Coordenador é alertado.
-   - Investigação deve ser iniciada (geralmente via visita técnica).
+| Acao | Quando usar |
+|---|---|
+| **Suspender** | Ha duvida temporaria ou pendencia de regularizacao. |
+| **Bloquear** | Ha impedimento grave, suspeita ou decisao que bloqueia continuidade. |
+| **Cessar** | O beneficio deve ser encerrado. |
+| **Reativar** | O motivo de suspensao, bloqueio ou cessacao foi resolvido. |
+| **Aprovar reavaliacao** | A concessao aguardava nova avaliacao e deve continuar. |
+| **Reverter cessacao** | Uma cessacao precisa ser desfeita conforme regra operacional. |
 
-> Bloquear é **mais sério** que suspender. Use com cautela e sempre com base em evidência.
+Sempre registre motivo objetivo, documento de apoio quando houver e contexto da decisao.
 
----
+## 6.4. Reavaliacao judicial
 
-## 6.5. Cessar uma concessão
+Concessoes vinculadas a determinacao judicial podem entrar em **Aguardando Reavaliacao**. Nesse ciclo, o gestor ou equipe autorizada precisa revisar a situacao e decidir continuidade ou encerramento.
 
-Encerra o benefício antes do prazo previsto.
+Possiveis resultados:
 
-### Motivos típicos
+- voltar para **Ativo**;
+- permanecer suspensa ou bloqueada;
+- ser **Cessada**;
+- exigir nova solicitacao ou nova analise, conforme o caso.
 
-- Beneficiário **faleceu**.
-- **Mudou de município** definitivamente.
-- **Não atende mais** aos critérios (renda subiu, situação resolvida).
-- **Solicitação do próprio beneficiário**.
-- **Descumprimento** repetido (após advertências).
+## 6.5. Pagamentos
 
-### Como fazer
+Acesse **Pagamentos** ou as rotas por status:
 
-1. Tela de detalhes → **Cessar Concessão**.
-2. Motivo (lista + texto livre).
-3. Data efetiva da cessação.
-4. Confirme.
-5. Efeito:
-   - Status: **Cessado**.
-   - Pagamentos futuros não são gerados.
-   - Pagamentos já liberados, se ainda não pagos, podem ser cancelados manualmente.
-   - Cidadão é notificado.
+- `/pagamentos`
+- `/pagamentos/pendentes`
+- `/pagamentos/liberados`
+- `/pagamentos/pagos`
+- `/pagamentos/recebidos`
 
----
+### Status de pagamento
 
-## 6.6. Reativar uma concessão
+| Status | Significado |
+|---|---|
+| **Pendente** | Criado e aguardando preparacao ou liberacao. |
+| **Agendado** | Tem data ou agenda definida. |
+| **Liberado** | Autorizado para pagamento. |
+| **Processando** | Em processamento financeiro. |
+| **Pago** | Pagamento executado, aguardando comprovante ou validacao posterior. |
+| **Recebido** | Comprovante foi anexado e esta pronto para analise. |
+| **Confirmado** | Pagamento validado e confirmado no sistema. |
+| **Invalido** | Comprovante ou evidencia foi rejeitado. |
+| **Suspenso** | Pagamento pausado. |
+| **Regularizado** | Pagamento ajustado apos pendencia. |
+| **Estornado** | Valor revertido ou marcado para reversao. |
+| **Cancelado** | Pagamento cancelado. |
+| **Erro** | Houve falha de processamento. |
 
-Para concessões **cessadas** que voltaram a fazer sentido (ex.: o motivo da cessação foi revertido).
+Fluxo comum:
 
-1. Tela de detalhes → **Reativar**.
-2. Justificativa.
-3. Pode exigir **nova análise** pelo coordenador (configurável).
-4. Confirme.
-5. Status volta para **Ativo**, novos pagamentos podem ser gerados.
-
----
-
-## 6.7. Pagamentos
-
-Cada concessão gera um ou mais **pagamentos** (parcelas). Em benefícios pontuais (Natalidade, Funeral), é uma única parcela. Em continuados (Aluguel Social, Cesta Básica), são várias.
-
-### Estados do pagamento
-
-```
-PENDENTE → AGENDADO → LIBERADO → PROCESSANDO → PAGO → CONFIRMADO → RECEBIDO
-                                                  │
-                                                  ├─► REGULARIZADO
-                                                  ├─► INVÁLIDO
-                                                  └─► ESTORNADO / CANCELADO
+```text
+Pendente -> Agendado -> Liberado -> Processando -> Pago -> Recebido -> Confirmado
 ```
 
-| Status | Significa |
-|---|---|
-| **Pendente** | Recém-criado, aguardando preparação |
-| **Agendado** | Agenda de pagamento definida |
-| **Liberado** | Aprovado para envio ao banco |
-| **Processando** | Transação em processamento |
-| **Pago** | Transação enviada à instituição financeira |
-| **Confirmado** | Comprovante anexado ao sistema |
-| **Recebido** | Cidadão confirmou recebimento (monitoramento) |
-| **Suspenso** | Pagamento pausado |
-| **Regularizado** | Pagamento regularizado após pendência |
-| **Inválido** | Comprovante inválido — requer reprocessamento |
-| **Erro** | Falha no processamento |
-| **Estornado** | Revertido (pode reliberar) |
-| **Cancelado** | Cancelado sem alternativa de reversão |
+O fluxo pode desviar para **Suspenso**, **Invalido**, **Estornado**, **Cancelado**, **Regularizado** ou **Erro**, conforme decisao e regra do sistema.
 
-### Métodos de pagamento
+## 6.6. Liberar pagamentos
 
-- **PIX** — instantâneo, preferencial.
-- **Depósito** (TED) — em conta corrente ou poupança.
-- **DOC** — mais lento, pouco usado.
-- **Presencial** — retirada na unidade (cartão, vale, etc.).
-
----
-
-## 6.8. Lista de pagamentos
-
-Menu **Pagamentos** desdobra-se por status:
-
-- `/pagamentos` — todos.
-- `/pagamentos/pendentes` — para liberar.
-- `/pagamentos/liberados` — para acompanhar processamento.
-- `/pagamentos/pagos` — confirmar comprovante.
-- `/pagamentos/recebidos` — recebimentos confirmados.
-
-A tabela mostra: beneficiário, benefício, valor, parcela, vencimento, status, técnico, unidade.
-
-### Filtros
-
-- **Status** (multi).
-- **Técnico** (multi).
-- **Unidade** (multi).
-- **Tipo de Benefício** (multi).
-- **Período**.
-- **Valor mín / máx**.
-- **Número da parcela** (inicial / final).
-- **Apenas Renovações**, **Determinação Judicial**.
-
----
-
-## 6.9. Liberar pagamentos (Coordenador / Gestor)
-
-> Restrito a Coordenador / Gestor.
-
-A liberação é o ato pelo qual o coordenador autoriza o envio do pagamento ao banco.
+Use a tela de pagamentos pendentes quando houver parcelas prontas para autorizacao.
 
 1. Acesse `/pagamentos/pendentes`.
-2. Aplique filtros (ex.: apenas Aluguel Social, mês corrente, unidade X).
-3. Selecione os pagamentos com **checkbox**:
-   - Linha a linha, ou
-   - **Selecionar tudo** na página, ou
-   - **Selecionar tudo** o resultado filtrado.
-4. Confira o totalizador no topo: *X pagamentos selecionados — total R$ Y*.
+2. Aplique filtros por beneficio, unidade, periodo, status, parcela ou determinacao judicial.
+3. Selecione pagamentos individualmente ou em lote.
+4. Confira total, quantidade e filtros aplicados.
 5. Clique em **Liberar Pagamentos**.
-6. Modal de confirmação — confira valores e quantidade. Confirme.
-7. O sistema:
-   - Muda os pagamentos para **Liberado**.
-   - Encaminha para o setor financeiro processar a transferência conforme o método configurado (PIX, depósito, presencial).
-   - Aguarda processamento (de minutos a horas, conforme método).
-8. Conforme o financeiro confirma, o status migra para **Pago**.
-
-> Em municípios maiores, é comum liberar centenas de pagamentos de uma vez.
-
----
-
-## 6.10. Confirmar comprovante de pagamento
-
-Após o banco processar, você anexa o comprovante para virar status **Confirmado**.
-
-1. Acesse `/pagamentos/pagos`.
-2. Localize o pagamento.
-3. Clique em **Anexar Comprovante**.
-4. Faça upload do PDF / imagem.
-5. Confirme.
-6. Status muda para **Confirmado**. Cidadão recebe notificação.
-
-> O sistema oferece um endpoint de **confirmação de recebimento** que pode ser usado por integrações externas para registrar a confirmação automaticamente. Consulte o administrador sobre integrações ativas.
-
----
-
-## 6.11. Estornar (reverter) um pagamento
-
-Use quando o pagamento foi feito por engano, para a pessoa errada, ou por valor incorreto.
-
-1. Tela de detalhes do pagamento → **Estornar**.
-2. Motivo (categoria + texto).
-3. Anexar comprovante de devolução, se houver.
-4. Confirme.
-5. Status muda para **Estornado**.
-6. O sistema gera um novo pagamento substituto (se aplicável) ou aguarda decisão.
-
-> Estornos exigem **registro contábil**. Avise o setor financeiro.
-
----
-
-## 6.12. Cancelar pagamentos em massa
-
-Em situações como cessação de concessão ou erro generalizado:
-
-1. `/pagamentos/pendentes` ou `/pagamentos/liberados`.
-2. Filtre o conjunto a cancelar.
-3. Selecione com checkbox.
-4. Clique em **Cancelar Pagamentos**.
-5. Justifique.
 6. Confirme.
 
-> Cancelamento é **irreversível**. Pagamentos cancelados não podem ser reativados — só se gera um novo.
+<Warning>
+Pagamentos podem obedecer sequencia de parcelas e status da concessao. Se a concessao estiver inativa, suspensa, bloqueada, cessada ou em reavaliacao, o pagamento pode ficar bloqueado.
+</Warning>
 
----
+## 6.7. Comprovantes e anexos
 
-## 6.13. Monitoramento de pagamentos
+O modal de detalhe do pagamento permite trabalhar com comprovante oficial e anexos extras.
 
-Coordenadores e auditores podem acompanhar a saúde geral via:
+### Comprovante oficial
 
-- **Painel Gerencial** (`/painel-gerencial`) — KPIs em tempo real.
-- **Pagamentos pendentes de confirmação** — `/pagamentos/pagos`.
-- **Relatórios financeiros** — capítulo [9. Relatórios](09-relatorios-downloads.md).
+1. Abra o pagamento.
+2. Anexe comprovante quando a acao estiver liberada.
+3. O pagamento pode passar para **Recebido**, aguardando validacao.
+4. Analise o arquivo.
+5. Confirme para concluir ou rejeite para marcar como **Invalido**.
 
----
+### Anexos extras
 
-## 6.14. Boas práticas
+Anexos extras ajudam a registrar documentos complementares alem do comprovante principal. Eles podem ser usados para evidencias, observacoes e historico de analise.
 
-- **Libere pagamentos em lote por benefício e mês** — facilita conciliação.
-- **Confira o totalizador antes de confirmar** — erros em massa são caros.
-- **Anexe comprovante imediatamente após o banco confirmar** — evita backlog.
-- **Documente bem suspensões e bloqueios** — vai para auditoria.
-- Evite: **Nunca libere sem revisar a documentação** — é a última barreira contra fraude.
-- Evite: **Não use estorno como "desfazer" — use só em erro real**.
+Boas praticas:
+
+- Nomeie arquivos de forma clara.
+- Revise se o anexo pertence ao pagamento certo.
+- Nao duplique comprovante sem necessidade.
+- Use observacao quando rejeitar ou desfazer analise.
+
+## 6.8. Rejeitar ou desfazer analise
+
+Use rejeicao quando o comprovante nao corresponde ao pagamento, esta ilegivel, esta incompleto ou pertence a outra pessoa.
+
+Use desfazer analise quando a confirmacao foi feita por engano e o status ainda permite revisao.
+
+Sempre registre motivo objetivo.
+
+## 6.9. Estorno, cancelamento e relancamento
+
+### Estornar
+
+Use quando o pagamento foi executado incorretamente ou precisa ser revertido.
+
+1. Abra o detalhe do pagamento.
+2. Clique em **Estornar** quando disponivel.
+3. Informe motivo.
+4. Anexe evidencia quando houver.
+5. Confirme.
+
+### Cancelar
+
+Use para pagamentos que nao devem mais seguir.
+
+Cancelamento pode ser irreversivel. Confira concessao, parcela e historico antes de confirmar.
+
+### Relancar retroativo
+
+Quando um pagamento ficou suspenso ou precisa ser refechado por regra operacional, a tela pode permitir relancamento retroativo. Use apenas quando o gestor confirmar que o pagamento substituto deve existir.
+
+## 6.10. Filtros e relatorios
+
+Filtros comuns:
+
+- status;
+- unidade;
+- tecnico;
+- beneficio;
+- periodo;
+- valor;
+- parcela;
+- renovacao;
+- determinacao judicial;
+- processo judicial;
+- concessao em reavaliacao.
+
+Para prestacao de contas, use os mesmos filtros na listagem e nos [relatorios](/gestao/relatorios-downloads) antes de comparar totais.
+
+## 6.11. Boas praticas
+
+- Libere pagamentos em lote apenas depois de revisar filtros e total.
+- Confirme comprovantes logo apos recebimento para evitar fila acumulada.
+- Rejeite comprovante com motivo claro.
+- Confira historico antes de estornar ou cancelar.
+- Para judicializados, confira solicitacao, concessao e processo antes de concluir divergencia.
+- Nao compartilhe comprovantes ou dados bancarios em screenshots sem mascara.

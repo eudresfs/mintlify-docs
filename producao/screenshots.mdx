@@ -1,0 +1,45 @@
+---
+title: Screenshots e dados pessoais
+description: Padrão para capturar, revisar e publicar imagens da documentação sem expor cidadãos.
+---
+
+Screenshots ajudam treinamento e suporte, mas só devem entrar na documentação quando puderem ser revisados sem expor dados pessoais de usuários, cidadãos, fornecedores ou servidores.
+
+## Ambientes permitidos
+
+| Ambiente | Pode usar? | Condicao |
+|---|---|---|
+| Local | Sim | Dados ficticios ou anonimizados. |
+| Staging | Sim | Dados ficticios, mascarados ou previamente autorizados. |
+| Producao | Evitar | Usar apenas quando indispensavel e com mascara completa. |
+
+## Dados que devem ser desfocados
+
+- Nome completo de cidadao quando nao for indispensavel ao entendimento.
+- CPF, NIS, RG, CNS, telefone, e-mail pessoal e endereco.
+- Dados bancarios, chaves PIX, comprovantes e recibos.
+- Documentos anexados, laudos, certidoes e arquivos enviados.
+- Tokens, links publicos de autorizacao, identificadores internos sensiveis e credenciais.
+
+## Padrao de captura
+
+| Item | Regra |
+|---|---|
+| Resolucao | 1440x900 ou 1920x1080 para desktop. |
+| Tema | Preferir tema claro, salvo quando a pagina documentar tema escuro. |
+| Navegador | Chrome ou Edge limpo, sem extensoes visiveis. |
+| Formato | PNG ou WebP. |
+| Nome | `area/descricao-curta.png`, por exemplo `pagamentos/detalhe-comprovante.png`. |
+
+## Checklist antes de publicar imagem
+
+1. A imagem mostra uma acao real da tela?
+2. A tela esta em estado estavel, sem skeleton, erro ou toast temporario?
+3. Todos os dados pessoais foram mascarados?
+4. A imagem nao mostra token, URL sensivel ou documento aberto?
+5. O texto da pagina explica o fluxo sem depender exclusivamente da imagem?
+6. O arquivo esta em `images/` com nome descritivo?
+
+<Warning>
+Nao publique screenshot de producao com dados pessoais reais. Quando a tela exigir exemplo, recrie o fluxo com dados ficticios em local ou staging.
+</Warning>

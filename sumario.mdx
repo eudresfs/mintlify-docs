@@ -1,65 +1,115 @@
 ---
-title: Sumário canônico
-description: Lista completa de capítulos do manual.
+title: Sumário completo
+description: Lista completa de páginas da documentação operacional do PGBen.
 ---
 
-Documentação oficial da **Plataforma de Gestão de Benefícios Eventuais**, sistema utilizado pelas Secretarias Municipais de Assistência Social (SEMTAS) para gerenciar todo o ciclo de vida dos benefícios eventuais: cadastro de cidadãos, análise de solicitações, concessão, pagamento e acompanhamento.
+Documentação oficial da **Plataforma de Gestão de Benefícios Eventuais**, sistema utilizado para gerenciar cadastro de cidadãos, solicitações, concessões, pagamentos, monitoramento, fornecedores e relatórios.
 
-Destinado a **usuários finais**: assistentes sociais, técnicos, coordenadores, gestores, administradores e fornecedores parceiros.
+O conteúdo é orientado a usuário final. Detalhes de API, DTOs, permissões internas e implementação aparecem apenas quando ajudam suporte ou publicação.
 
 ## Para começar
 
 <CardGroup cols={3}>
-  <Card title="01 · Introdução ao PGBen" icon="info" href="/comecar/introducao">
-    O que é, perfis, categorias.
+  <Card title="Introdução ao PGBen" icon="info" href="/comecar/introducao">
+    O que é o sistema, quais papéis participam e como o ciclo do benefício se organiza.
   </Card>
-  <Card title="02 · Primeiros passos" icon="play" href="/comecar/primeiros-passos">
-    Login, navegação, perfil.
+  <Card title="Primeiros passos" icon="play" href="/comecar/primeiros-passos">
+    Acesso, senha, navegação, filtros, tabelas, uploads, perfil e saída segura.
   </Card>
-  <Card title="03 · Glossário" icon="book" href="/comecar/glossario">
-    Termos do domínio.
+  <Card title="Glossario" icon="book" href="/comecar/glossario">
+    Termos usados em solicitações, concessões, pagamentos, monitoramento e suporte.
+  </Card>
+</CardGroup>
+
+## Trilhas de leitura
+
+<CardGroup cols={2}>
+  <Card title="Visão geral das trilhas" icon="route" href="/trilhas/visao-geral">
+    Escolha o caminho de leitura por papel.
+  </Card>
+  <Card title="Operador" icon="clipboard-list" href="/trilhas/operador">
+    Atendimento, beneficiários, solicitações, documentos e visitas.
+  </Card>
+  <Card title="Gestor" icon="chart-no-axes-combined" href="/trilhas/gestor">
+    Decisão, concessões, pagamentos, reavaliações e relatórios.
+  </Card>
+  <Card title="Administrador" icon="settings" href="/trilhas/administrador">
+    Usuários, unidades, benefícios, fornecedores, perfis e orçamento.
+  </Card>
+  <Card title="Fornecedor" icon="handshake" href="/trilhas/fornecedor">
+    Portal do fornecedor, autorizações, complementação e funcionários.
+  </Card>
+  <Card title="Suporte" icon="life-buoy" href="/trilhas/suporte">
+    Diagnóstico, evidências, FAQ, escalonamento e privacidade.
   </Card>
 </CardGroup>
 
 ## Operação
 
 <CardGroup cols={2}>
-  <Card title="04 · Beneficiários" icon="users" href="/operacao/beneficiarios">
-    Cadastrar, buscar, transferir.
+  <Card title="Beneficiários" icon="users" href="/operacao/beneficiarios">
+    Cadastrar, localizar, transferir unidade, atualizar dados e consultar histórico.
   </Card>
-  <Card title="05 · Solicitações" icon="file-text" href="/operacao/solicitacoes">
-    Criar, analisar, decidir.
+  <Card title="Solicitações" icon="file-text" href="/operacao/solicitacoes">
+    Criar, pendenciar, analisar, decidir, judicializar e renovar.
   </Card>
-  <Card title="06 · Concessões e pagamentos" icon="credit-card" href="/operacao/concessoes-pagamentos">
-    Parcelas, suspensão, cessação.
+  <Card title="Concessões e pagamentos" icon="credit-card" href="/operacao/concessoes-pagamentos">
+    Gerenciar status, parcelas, comprovantes, anexos, estornos e reavaliação.
   </Card>
-  <Card title="07 · Monitoramento" icon="map-pin" href="/operacao/monitoramento">
-    Visitas técnicas, advertências.
+  <Card title="Monitoramento" icon="map-pin" href="/operacao/monitoramento">
+    Planejar visitas, registrar resultados, advertencias e relatorios.
   </Card>
 </CardGroup>
 
 ## Gestão
 
 <CardGroup cols={3}>
-  <Card title="08 · Administração" icon="shield" href="/gestao/administracao">
-    Usuários, unidades, benefícios, orçamento.
+  <Card title="Administração" icon="shield" href="/gestao/administracao">
+    Configuração operacional do município.
   </Card>
-  <Card title="09 · Relatórios" icon="chart-bar" href="/gestao/relatorios-downloads">
-    Sob demanda, agendados, lote.
+  <Card title="Oficios" icon="files" href="/gestao/oficios">
+    Lotes, documentos, bloqueios e relatório de ofícios.
   </Card>
-  <Card title="10 · Fornecedor" icon="handshake" href="/gestao/fornecedor">
-    Autorização, complementação.
+  <Card title="Relatorios e downloads" icon="chart-bar" href="/gestao/relatorios-downloads">
+    Relatórios sob demanda, agendados, downloads e exportações.
+  </Card>
+</CardGroup>
+
+## Fornecedor
+
+<CardGroup cols={1}>
+  <Card title="Portal do fornecedor" icon="handshake" href="/gestao/fornecedor">
+    Acesso separado para solicitações, autorizações, complementação e funcionários.
+  </Card>
+</CardGroup>
+
+## Changelog
+
+<CardGroup cols={1}>
+  <Card title="Últimas entregas" icon="history" href="/changelog/ultimas-entregas">
+    Mudanças de 2 a 16 de junho de 2026 auditadas no front e no backend.
   </Card>
 </CardGroup>
 
 ## Suporte
 
 <CardGroup cols={2}>
-  <Card title="11 · Perguntas frequentes" icon="circle-help" href="/suporte/faq">
-    Acesso, fluxos, LGPD.
+  <Card title="Perguntas frequentes" icon="circle-help" href="/suporte/faq">
+    Acesso, fluxos, dados pessoais, pagamentos, relatórios e fornecedor.
   </Card>
-  <Card title="12 · Solução de problemas" icon="wrench" href="/suporte/troubleshooting">
-    Erros HTTP, suporte, bug report.
+  <Card title="Solução de problemas" icon="wrench" href="/suporte/troubleshooting">
+    Diagnóstico por erro, tela, status e evidências.
+  </Card>
+</CardGroup>
+
+## Publicação
+
+<CardGroup cols={2}>
+  <Card title="Checklist de publicação" icon="badge-check" href="/producao/checklist-publicacao">
+    Validações antes de publicar a documentação.
+  </Card>
+  <Card title="Screenshots e dados pessoais" icon="image" href="/producao/screenshots">
+    Padrão seguro para capturar e publicar imagens.
   </Card>
 </CardGroup>
 
@@ -67,11 +117,11 @@ Destinado a **usuários finais**: assistentes sociais, técnicos, coordenadores,
 
 <CardGroup cols={1}>
   <Card title="Índice remissivo" icon="list" href="/apendice/indice-remissivo">
-    Lista alfabética de termos com link direto para a seção.
+    Lista alfabética de termos com link direto para a seção correspondente.
   </Card>
 </CardGroup>
 
-## Convenções tipográficas
+## Convenções
 
 | Elemento da interface | Como aparece no manual |
 | :-- | :-- |
@@ -80,12 +130,10 @@ Destinado a **usuários finais**: assistentes sociais, técnicos, coordenadores,
 | Status de entidade | *Em Análise*, *Aprovada* |
 | Protocolo gerado | `PGBEN-2026-000123` |
 
-Avisos institucionais usam dois níveis:
-
 <Tip>
-**Dica** — Atalhos e boas práticas. Acelera a operação.
+Use as trilhas para treinamento e os capítulos de módulo para execução diária.
 </Tip>
 
 <Warning>
-**Atenção** — Ação irreversível ou de impacto. Confira antes de confirmar.
+Quando compartilhar evidências, mascare dados pessoais antes de abrir chamado ou publicar screenshot.
 </Warning>

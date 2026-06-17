@@ -1,0 +1,80 @@
+---
+title: Ofícios
+description: Criação, lotes, anexos, bloqueios e relatório de ofícios.
+---
+
+Ofícios são documentos formais usados para registrar comunicações, encaminhamentos e controles vinculados a benefícios. No PGBen, o módulo também organiza lotes, competências, anexos e status de pagamento.
+
+## Acesso
+
+Acesse menu **Ofícios** ou a rota `/oficios`.
+
+As acoes exibidas dependem do perfil do usuario, da unidade, do status do oficio e da situacao dos lotes.
+
+## Listagem
+
+A listagem mostra:
+
+| Coluna | Uso |
+|---|---|
+| **Numero** | Identificacao do oficio. |
+| **Beneficio** | Tipo de beneficio vinculado. |
+| **Unidade** | Unidade responsavel. |
+| **Quantidade** | Quantidade de beneficiarios ou itens envolvidos. |
+| **Lotes** | Competencias e status dos lotes. |
+| **Ultimo pagamento** | Data de referencia quando houver lote pago. |
+| **Status** | Situacao atual do oficio ou dos lotes. |
+
+## Criar oficio
+
+1. Clique em **Novo Ofício**.
+2. Informe beneficio, unidade, periodo, quantidade e dados solicitados pela tela.
+3. Revise os beneficiarios ou itens vinculados.
+4. Salve.
+5. Confira se os lotes foram gerados conforme competencia e quantidade.
+
+## Lotes e pagamento sequencial
+
+Ofícios com lotes seguem regra de sequencia. Um lote posterior pode ficar bloqueado enquanto o anterior nao estiver em status que permita continuidade.
+
+| Situacao | Efeito |
+|---|---|
+| Lote anterior pendente | Lote seguinte pode ficar bloqueado. |
+| Lote anterior pago | Lote seguinte pode ser liberado conforme regra. |
+| Lote cancelado | O sistema reavalia se o lote seguinte pode seguir. |
+| Lote em status terminal | Edicao e exclusao do oficio podem ficar bloqueadas. |
+
+<Warning>
+Nao trate bloqueio de lote como erro antes de conferir o status do lote anterior. A regra sequencial evita pagamento fora de ordem.
+</Warning>
+
+## Documento do oficio
+
+No detalhe do oficio, quando a tela permitir, o usuario pode:
+
+- Anexar documento proprio.
+- Baixar documento.
+- Visualizar documento.
+- Remover documento.
+
+Arquivos aceitos dependem da configuracao de backend. A auditoria do codigo confirmou validacao de extensoes comuns de documento e imagem, com limite de tamanho aplicado pelo servico.
+
+## Duplicar oficio
+
+A duplicacao ajuda a criar novo oficio a partir de informacoes semelhantes. Antes de confirmar:
+
+1. Revise beneficio, unidade e periodo.
+2. Confira competencias e lotes.
+3. Verifique se documentos e anexos devem ser reaproveitados ou reenviados.
+
+## Relatorio de oficios
+
+O modulo possui relatorio proprio em [Relatorios e downloads](/gestao/relatorios-downloads). Use filtros por periodo, unidade, beneficio e status para prestacao de contas ou conciliacao.
+
+## Boas praticas
+
+- Use nomes e numeros consistentes com o padrao institucional.
+- Confira lote anterior antes de abrir chamado sobre bloqueio.
+- Nao remova documento sem confirmar que o oficio ainda esta em status editavel.
+- Gere relatorio de oficios com os mesmos filtros usados na listagem quando precisar comparar totais.
+- Nunca compartilhe oficio com dados pessoais sem revisar mascara e necessidade legal.

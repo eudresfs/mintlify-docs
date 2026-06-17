@@ -1,6 +1,14 @@
-# PGBen Docs (Mintlify)
+# PGBen Docs
 
-Documentação Mintlify do PGBen. Estrutura paralela à versão VitePress em `docs/`. Conteúdo idêntico, formato MDX.
+Documentacao Mintlify do PGBen para producao.
+
+A fonte de verdade e:
+
+- codigo atual de `pgben-front`;
+- codigo atual de `pgben-server`;
+- orientacoes operacionais da SEMTAS e do time do projeto.
+
+O repositorio ja esta conectado ao Mintlify. Push em `main` dispara publicacao conforme configuracao da conta.
 
 ## Setup
 
@@ -10,61 +18,69 @@ cd pgben-mintlify-docs
 mint dev
 ```
 
-Preview local em `http://localhost:3000`.
+Preview local padrao: `http://localhost:3000`.
 
 ## Estrutura
 
-```
+```text
 pgben-mintlify-docs/
-├── docs.json          # config (theme, navigation, brand)
-├── index.mdx          # landing
-├── sumario.mdx        # sumário canônico
-├── style.css          # custom CSS (Outfit + JetBrains Mono + ledger)
-├── AGENTS.md          # instruções para AI agents
-├── favicon.ico
+├── docs.json
+├── index.mdx
+├── sumario.mdx
+├── comecar/
+├── trilhas/
+├── operacao/
+├── gestao/
+├── changelog/
+├── suporte/
+├── producao/
+├── apendice/
+├── images/
 ├── logo/
-│   ├── light.png
-│   └── dark.png
-├── comecar/           # 1-Introdução, 2-Primeiros passos, 3-Glossário
-├── operacao/          # 4-Beneficiários, 5-Solicitações, 6-Concessões/Pagamentos, 7-Monitoramento
-├── gestao/            # 8-Administração, 9-Relatórios, 10-Fornecedor
-├── suporte/           # 11-FAQ, 12-Troubleshooting
-├── apendice/          # Índice remissivo
-└── convert.ps1        # script de conversão VitePress→Mintlify (re-roda se houver mudanças no docs/)
+└── convert.ps1
 ```
 
-## Comandos úteis
+## Comandos uteis
 
 ```bash
-mint dev              # preview local com hot reload
-mint broken-links     # valida links internos
-mint update           # atualiza CLI Mintlify
+mint dev
+mint broken-links
+mint update
+git diff --check
 ```
 
-## Manutenção
+## Configuracao de producao
 
-A fonte canônica do conteúdo é `docs/usuario-final/*.md` (VitePress). Para sincronizar mudanças:
+- Sistema: `https://semtas-natal.pgben.com.br`
+- OpenAPI: `https://api-semtas-natal.pgben.com.br/openapi.json`
+- Posicionamento: documentacao de usuario final, com trilhas por papel.
+- Changelog: entregas recentes auditadas nas ultimas duas semanas.
 
-```powershell
-cd C:\Users\eudre\dev\pgben\pgben-mintlify-docs
-.\convert.ps1
-```
+## Manutencao editorial
 
-Re-converte todos os capítulos. Frontmatter (title/description) é mantido conforme `convert.ps1`. Edições manuais em `.mdx` serão sobrescritas — edite a fonte VitePress + reconverter.
+1. Audite primeiro o codigo de `pgben-front` e `pgben-server`.
+2. Documente o efeito operacional, nao nomes internos de DTO, permissao ou entidade.
+3. Quando uma acao depender de perfil, use linguagem como "depende de acesso liberado".
+4. Quando uma acao depender de status, cite o status antes de orientar a acao.
+5. Antes de publicar screenshots, aplique as regras em `producao/screenshots.mdx`.
+6. Rode `mint broken-links` antes de commit.
 
-## Diferenças vs VitePress
+## Script legado
 
-| Aspecto | VitePress | Mintlify |
-|---|---|---|
-| Hospedagem | Self-hosted (Nginx/Docker) | SaaS Mintlify |
-| Custo | Gratuito | Free tier limitado; Pro $150/mês |
-| Custom CSS | Total | Limitado a `style.css` |
-| Search | Local (FlexSearch) | AI search built-in |
-| Componentes | Vue | MDX + Mintlify components (Card, Tip, Warning, Note) |
-| Domínio custom | Livre | Plano pago |
+`convert.ps1` existe para reconverter conteudo antigo de VitePress. Ele nao e a fonte canonica atual.
+
+Use esse script apenas quando a equipe decidir recuperar conteudo legado e sempre revise o diff, porque ele pode sobrescrever edicoes manuais em MDX.
+
+## Screenshots
+
+Capturas devem usar dados ficticios ou anonimizados. Nunca publique CPF, NIS, telefone, endereco, dados bancarios, documentos, tokens ou links publicos sensiveis sem mascara.
 
 ## Deploy
 
-Conecte repositório GitHub à conta Mintlify; push em `main` triggers deploy automático.
+O deploy e feito pelo Mintlify a partir do repositorio GitHub conectado.
 
-Detalhes: https://www.mintlify.com/docs/quickstart
+Referencias oficiais:
+
+- https://www.mintlify.com/docs/organize/navigation
+- https://www.mintlify.com/docs/organize/settings
+- https://www.mintlify.com/docs/cli/commands

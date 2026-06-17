@@ -1,79 +1,65 @@
 ---
 title: Manual do Usuário
-description: Plataforma de Gestão de Benefícios Eventuais. Documentação operacional para quem opera o sistema todos os dias.
-mode: frame
+description: Documentação operacional do PGBen para produção, organizada por trilhas, módulos e entregas recentes.
 ---
 
-<div data-pgben-home className="flex w-full flex-col gap-8 max-w-5xl mx-auto px-4 md:px-8 lg:px-12 py-10 lg:gap-12 lg:py-14">
+# Documentação operacional do PGBen
 
-  <div className="flex max-w-[640px] flex-col gap-3">
-    <span className="font-mono text-xs uppercase tracking-[0.16em] text-primary">Manual do Usuário</span>
-    <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight text-gray-900 dark:text-gray-50">
-      O ciclo do benefício, do cadastro à concessão, em doze capítulos.
-    </h1>
-    <p className="text-balance text-base leading-relaxed text-gray-600 dark:text-gray-400">
-      Documentação operacional para assistentes sociais, técnicos, coordenadores e administradores que operam o sistema todos os dias.
-    </p>
-  </div>
+Use as trilhas para orientar operadores, gestores, administradores, fornecedores e suporte. Use os capítulos de módulo como referência quando precisar executar um fluxo específico.
 
-  <div className="flex flex-col gap-3">
-    <h2 className="font-mono text-xs uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400">Atalho operacional</h2>
+## Trilhas principais
 
-    <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 overflow-hidden">
-      <table className="w-full text-sm">
-        <thead className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-          <tr>
-            <th className="text-left p-4 font-mono text-[11px] uppercase tracking-wider text-gray-500">Papel</th>
-            <th className="text-left p-4 font-mono text-[11px] uppercase tracking-wider text-gray-500">Comece por</th>
-            <th className="text-left p-4 font-mono text-[11px] uppercase tracking-wider text-gray-500">Use no dia a dia</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-t border-gray-200 dark:border-gray-800">
-            <td className="p-4 font-medium text-gray-900 dark:text-gray-100">Assistente social, técnico</td>
-            <td className="p-4"><a href="/comecar/introducao">Cap. 1</a>, <a href="/comecar/primeiros-passos">2</a>, <a href="/operacao/beneficiarios">4</a></td>
-            <td className="p-4"><a href="/operacao/solicitacoes">Cap. 5</a>, <a href="/operacao/monitoramento">7</a></td>
-          </tr>
-          <tr className="border-t border-gray-200 dark:border-gray-800">
-            <td className="p-4 font-medium text-gray-900 dark:text-gray-100">Coordenador, gestor</td>
-            <td className="p-4"><a href="/operacao/solicitacoes">Cap. 5</a>, <a href="/operacao/concessoes-pagamentos">6</a></td>
-            <td className="p-4"><a href="/gestao/relatorios-downloads">Cap. 9</a></td>
-          </tr>
-          <tr className="border-t border-gray-200 dark:border-gray-800">
-            <td className="p-4 font-medium text-gray-900 dark:text-gray-100">Administrador</td>
-            <td className="p-4"><a href="/gestao/administracao">Cap. 8</a></td>
-            <td className="p-4"><a href="/gestao/relatorios-downloads">Cap. 9</a>, <a href="/comecar/glossario">Glossário</a></td>
-          </tr>
-          <tr className="border-t border-gray-200 dark:border-gray-800">
-            <td className="p-4 font-medium text-gray-900 dark:text-gray-100">Fornecedor parceiro</td>
-            <td className="p-4"><a href="/gestao/fornecedor">Cap. 10</a></td>
-            <td className="p-4 text-gray-400">—</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<CardGroup cols={2}>
+  <Card title="Operador" icon="clipboard-list" href="/trilhas/operador">
+    Beneficiários, solicitações, documentos, visitas e acompanhamento diário.
+  </Card>
+  <Card title="Gestor" icon="chart-no-axes-combined" href="/trilhas/gestor">
+    Decisões, concessões, pagamentos, reavaliações, relatórios e painel gerencial.
+  </Card>
+  <Card title="Administrador" icon="settings" href="/trilhas/administrador">
+    Usuários, unidades, benefícios, fornecedores, perfis, orçamento e parâmetros.
+  </Card>
+  <Card title="Fornecedor" icon="handshake" href="/trilhas/fornecedor">
+    Portal do fornecedor, autorizações, solicitações, complementação e funcionários.
+  </Card>
+  <Card title="Suporte" icon="life-buoy" href="/trilhas/suporte">
+    Diagnóstico, evidências, FAQ, escalonamento e privacidade.
+  </Card>
+  <Card title="Changelog" icon="history" href="/changelog/ultimas-entregas">
+    Entregas recentes auditadas no front e no backend desde 2 de junho de 2026.
+  </Card>
+</CardGroup>
 
-  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-    <Card title="Para começar" icon="play" href="/comecar/introducao">
-      Introdução, primeiros passos e glossário.
-    </Card>
-    <Card title="Operação" icon="cog" href="/operacao/beneficiarios">
-      Beneficiários, solicitações, concessões e visitas técnicas.
-    </Card>
-    <Card title="Gestão" icon="shield" href="/gestao/administracao">
-      Usuários, unidades, benefícios, orçamento e relatórios.
-    </Card>
-    <Card title="Suporte" icon="life-buoy" href="/suporte/faq">
-      Perguntas frequentes e solução de problemas.
-    </Card>
-  </div>
+## Referência por módulo
 
-  <div className="flex flex-col gap-2 pt-4 border-t border-gray-200 dark:border-gray-800">
-    <p className="text-sm text-gray-600 dark:text-gray-400">
-      Dúvidas não respondidas aqui devem ser reportadas à coordenação da unidade ou à equipe de suporte da SEMTAS pelos canais oficiais. Ao abrir chamado, informe número de protocolo, tela onde ocorreu o problema e horário aproximado.
-    </p>
-    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-400">PGBEN · Edição 2026</p>
-  </div>
+| Módulo | Use quando precisar | Página |
+|---|---|---|
+| Beneficiários | Cadastrar, localizar, transferir unidade e consultar histórico. | [Abrir](/operacao/beneficiarios) |
+| Solicitações | Criar, pendenciar, analisar, decidir e acompanhar protocolos. | [Abrir](/operacao/solicitacoes) |
+| Concessões e pagamentos | Gerenciar benefício ativo, parcelas, comprovantes, estornos e reavaliação. | [Abrir](/operacao/concessoes-pagamentos) |
+| Monitoramento | Planejar visitas, registrar resultados, advertências e relatórios. | [Abrir](/operacao/monitoramento) |
+| Administração | Configurar usuários, unidades, benefícios, fornecedores e orçamento. | [Abrir](/gestao/administracao) |
+| Ofícios | Controlar documentos formais, lotes, anexos e relatório de ofícios. | [Abrir](/gestao/oficios) |
+| Fornecedor | Orientar parceiro no portal separado. | [Abrir](/gestao/fornecedor) |
+| Relatórios | Gerar exportações, downloads, dashboards e conciliações. | [Abrir](/gestao/relatorios-downloads) |
 
-</div>
+## Publicação e suporte
+
+<CardGroup cols={2}>
+  <Card title="Checklist de publicacao" icon="badge-check" href="/producao/checklist-publicacao">
+    Validações antes de publicar ou revisar a documentação.
+  </Card>
+  <Card title="Screenshots e dados pessoais" icon="image" href="/producao/screenshots">
+    Padrão para capturas sem expor cidadãos, usuários ou fornecedores.
+  </Card>
+  <Card title="Perguntas frequentes" icon="circle-help" href="/suporte/faq">
+    Respostas rápidas para dúvidas comuns.
+  </Card>
+  <Card title="Solução de problemas" icon="wrench" href="/suporte/troubleshooting">
+    Diagnóstico por erro, tela, status e evidências.
+  </Card>
+</CardGroup>
+
+<Warning>
+Ao abrir chamado ou compartilhar screenshot, mascare dados pessoais como CPF, NIS, telefone, endereço, dados bancários, documentos e links públicos.
+</Warning>

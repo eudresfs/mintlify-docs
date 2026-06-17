@@ -1,205 +1,155 @@
 ---
 title: Relatórios e downloads
-description: Relatórios sob demanda, agendados e central de downloads em lote.
+description: Relatórios sob demanda, agendados, painel gerencial, downloads em lote e exportações.
 ---
 
-O PGBen oferece relatórios prontos, agendamento de relatórios automáticos e uma central de downloads em lote para arquivos grandes. Este capítulo cobre cada um.
+O PGBen oferece relatorios operacionais, exportacoes de listagens, painel gerencial e central de downloads para arquivos grandes.
 
----
+## 9.1. Relatorios sob demanda
 
-## 9.1. Relatórios sob demanda
+Use o botao **Downloads** ou **Exportar** nas listagens.
 
-A maioria das listagens (Solicitações, Concessões, Pagamentos, Visitas, Beneficiários) tem o botão **Downloads** ou **Exportar** para gerar relatórios pontuais.
-
-### Como gerar
+Fluxo comum:
 
 1. Abra a listagem desejada.
-2. Aplique filtros (período, unidade, benefício, status…).
-3. *Opcional*: selecione linhas específicas com checkbox.
-4. Clique em **Downloads**.
-5. Escolha o formato:
-   - **PDF** — formatado, com cabeçalho e tabela.
-   - **Excel (.xlsx)** — várias abas (resumo, detalhes, métricas).
-   - **CSV** — texto simples para análise externa.
-6. Para arquivos pequenos: download imediato.
-7. Para arquivos grandes: gerados em segundo plano. Você é redirecionado à tela [Downloads](#93-downloads-em-lote) para acompanhar.
+2. Aplique filtros.
+3. Selecione linhas quando a tela permitir.
+4. Clique em **Downloads** ou **Exportar**.
+5. Escolha formato: PDF, Excel ou CSV.
+6. Aguarde download imediato ou acompanhe o processamento em lote.
 
-> Toda exportação é registrada na auditoria com quem baixou, quando e quais filtros foram aplicados.
+## 9.2. Areas cobertas
 
-### Tipos de relatório por área
-
-#### Solicitações
-- Solicitações por status, período, unidade.
-- Funil de conversão (criada → analisada → aprovada/indeferida).
-- Tempo médio de análise por benefício.
-- Top motivos de indeferimento.
-
-#### Concessões
-- Concessões ativas no período.
-- Concessões cessadas com motivo.
-- Renovações realizadas.
-- Concessões por bairro / unidade.
-
-#### Pagamentos
-- Pagamentos liberados / pagos por período.
-- Total pago por benefício.
-- Pagamentos pendentes de confirmação.
-- Estornos e cancelamentos.
-
-#### Beneficiários
-- Beneficiários ativos por unidade / bairro.
-- Composição familiar / dados socioeconômicos consolidados.
-- Beneficiários com múltiplas concessões.
-
-#### Visitas
-- Visitas realizadas no período.
-- Conformidade por técnico / unidade.
-- Advertências emitidas / respondidas / vencidas.
-
----
-
-## 9.2. Relatórios Agendados
-
-Para relatórios recorrentes (ex.: prestação de contas mensal), use o agendamento. O sistema gera e envia por e-mail automaticamente.
-
-### Acessando
-
-Menu **Relatórios Agendados** (ou `/relatorios-agendados`).
-
-### Listagem
-
-| Coluna | Conteúdo |
+| Area | Exemplos de relatorio |
 |---|---|
-| **Nome do Relatório** | Identificação |
-| **Frequência** | Diário, semanal, mensal, trimestral |
-| **Próxima Execução** | Data e hora |
-| **Últimas Execuções** | Histórico recente |
-| **Status** | Ativo, Pausado |
-| **Ações** | Editar, Executar Agora, Pausar, Excluir |
+| Solicitacoes | status, periodo, unidade, beneficio, tempo de analise e motivos de indeferimento. |
+| Concessoes | ativas, cessadas, renovacoes, reavaliacoes e concessoes por unidade. |
+| Pagamentos | pendentes, liberados, pagos, recebidos, confirmados, estornados e cancelados. |
+| Beneficiarios | ativos, unidade, bairro, composicao familiar e dados consolidados. |
+| Monitoramento | visitas, conformidade, advertencias, tecnico, periodo e unidade. |
+| Fornecedores | solicitacoes, complementacoes, autorizacoes e recibos quando aplicavel. |
+| Ofícios | oficios por periodo, unidade, beneficio, lotes e status. |
 
-### Agendar novo relatório
+## 9.3. Pagamentos e judicializacao
 
-1. Clique em **Agendar Novo Relatório**.
-2. Preencha:
-   - **Nome** (ex.: "Pagamentos Aluguel Social — Mensal").
-   - **Tipo de Relatório** (escolha do catálogo).
-   - **Frequência**:
-     - **Diário** — defina o horário de execução.
-     - **Semanal** — defina o dia da semana e horário.
-     - **Mensal** — defina o dia do mês e horário.
-     - **Trimestral** — defina o mês e dia.
-   - **Filtros aplicáveis** (período, unidade, benefício, status…).
-   - **Destinatários** — um ou vários e-mails (separe por vírgula).
-   - **Formato** — PDF, Excel ou ambos.
-   - **Status inicial** — Ativo ou Pausado.
-3. Salve.
-4. O sistema gera e envia conforme a programação.
+Relatorios de pagamentos incluem filtros sensiveis para conciliacao:
 
-### Ações sobre agendamento
+- determinacao judicial;
+- numero de processo;
+- concessao em reavaliacao;
+- status da solicitacao;
+- status da concessao;
+- status do pagamento;
+- periodo e parcela.
 
-- **Editar** — alterar qualquer parâmetro.
-- **Executar Agora** — gera o relatório imediatamente sem alterar a agenda.
-- **Pausar / Reativar** — suspender temporariamente sem excluir.
-- **Excluir** — remove o agendamento (não afeta gerações passadas).
+<Warning>
+Ao comparar totais de judicializados, use os mesmos filtros na listagem e no relatorio. Pagamentos podem depender do contexto da solicitacao, da concessao e da reavaliacao.
+</Warning>
 
-### Histórico
+## 9.4. Relatorio de oficios
 
-Cada execução fica registrada. Você pode **rebaixar (re-download)** versões anteriores caso o e-mail tenha se perdido.
+O relatorio de oficios apoia prestacao de contas e conciliacao de lotes.
 
----
+Filtros recomendados:
 
-## 9.3. Downloads em Lote
+- periodo;
+- unidade;
+- tipo de beneficio;
+- status do oficio;
+- status do lote;
+- competencia;
+- documento anexado ou pendente, quando a tela permitir.
 
-Quando um relatório, exportação ou geração de arquivos múltiplos (ex.: contracheques de centenas de beneficiários) é grande, o sistema processa em segundo plano e disponibiliza nesta central.
+Leia tambem [Ofícios](/gestao/oficios).
 
-### Acessando
+## 9.5. Relatorios agendados
 
-Menu **Downloads** (ou `/downloads`).
+Acesse **Relatorios Agendados** ou `/relatorios-agendados`.
 
-### Cards de resumo
+Use para rotinas recorrentes, como prestacao de contas mensal ou acompanhamento semanal.
 
-- **Total** — todos os jobs já gerados.
-- **Em Processamento** — gerando agora.
-- **Concluídos** — prontos para baixar.
-- **Falhas** — algo deu errado.
+### Criar agendamento
 
-### Lista de jobs
+1. Clique em **Agendar Novo Relatorio**.
+2. Escolha tipo de relatorio.
+3. Defina frequencia.
+4. Configure filtros.
+5. Informe destinatarios institucionais.
+6. Escolha formato.
+7. Salve.
 
-| Coluna | Conteúdo |
+### Acoes
+
+- **Editar** para ajustar filtros, destinatarios ou frequencia.
+- **Executar agora** para gerar sem esperar agenda.
+- **Pausar** para interromper temporariamente.
+- **Reativar** para retomar.
+- **Excluir** quando o agendamento nao for mais usado.
+
+## 9.6. Downloads em lote
+
+Arquivos grandes sao processados em segundo plano.
+
+Acesse **Downloads** ou `/downloads`.
+
+Status comuns:
+
+| Status | Significado |
 |---|---|
-| **Tipo** | Relatório, Documentos, Comprovantes, etc. |
-| **Status** | Em fila, Processando, Concluído, Falha, Cancelado |
-| **Criado em** | Data/hora |
-| **Concluído em** | Data/hora (se aplicável) |
-| **Progresso** | Barra de % |
-| **Ações** | Baixar, Tentar novamente, Cancelar, Excluir |
+| **Em fila** | Job aguardando processamento. |
+| **Processando** | Arquivo sendo gerado. |
+| **Concluido** | Arquivo pronto para baixar. |
+| **Falha** | O processamento falhou. |
+| **Cancelado** | Job interrompido. |
 
-### Ações
+Acoes comuns:
 
-- **Baixar** — quando o status for **Concluído**, clique para baixar o arquivo (geralmente um ZIP ou PDF).
-- **Tentar novamente** — se houve falha, reprocessa.
-- **Cancelar** — interrompe um job em processamento.
-- **Excluir** — remove do histórico.
+- baixar;
+- tentar novamente;
+- cancelar;
+- excluir do historico.
 
-### Atualização
+## 9.7. Painel gerencial
 
-A página atualiza automaticamente os status. Você também pode clicar em **Atualizar** para forçar.
+Acesse **Painel Gerencial** ou `/painel-gerencial`.
 
-> Quando um job conclui, você recebe **notificação in-app** (sino no header).
+O painel consolida indicadores de:
 
----
+- orcamento;
+- concessoes;
+- pagamentos;
+- visitas;
+- beneficiarios;
+- impacto social;
+- operacao por unidade e periodo.
 
-## 9.4. Painel Gerencial
+Os indicadores dependem dos filtros aplicados e do acesso liberado ao usuario.
 
-Para uma visão consolidada de KPIs, use o **Painel Gerencial** (`/painel-gerencial`).
+## 9.8. Dashboards
 
-> Permissão `metrica.dashboard.orcamento_gerencial.visualizar` ou perfil **Administrador**.
+Dashboards ajudam leitura rapida por area:
 
-### Conteúdo
+- **Gestao Operacional**: filas, produtividade, riscos e pendencias.
+- **Impacto Social**: atendimentos, distribuicao territorial e evolucao dos beneficios.
+- **Orcamento**: valor previsto, utilizado e disponivel.
 
-Cards com indicadores em tempo real:
+## 9.9. LGPD e compartilhamento
 
-- **Orçamento** — total, utilizado, % de uso, gráfico de evolução.
-- **Concessões** — ativas, novas no período, renovações, cessadas.
-- **Pagamentos** — pendentes, liberados, em atraso.
-- **Visitas** — planejadas vs. realizadas, taxa de conformidade.
-- **Beneficiários** — total ativos, novos no período.
+Relatorios podem conter dados pessoais e dados sociais sensiveis.
 
-### Gráficos
+Antes de compartilhar:
 
-- **Linha** — evolução do orçamento mês a mês.
-- **Barra** — orçamento por benefício.
-- **Pizza/Donut** — distribuição de concessões por benefício.
-- **Heatmap** — dias de maior volume de operações.
+1. Verifique destinatario.
+2. Use e-mail institucional.
+3. Remova colunas desnecessarias.
+4. Proteja arquivos quando aplicavel.
+5. Nao envie para grupos abertos ou ferramentas publicas.
 
-### Filtros
+## 9.10. Boas praticas
 
-- **Período** (mês, trimestre, ano, customizado).
-- **Unidade** (multi).
-- **Benefício** (multi).
-
-### Exportação
-
-Botão **Exportar** gera o painel inteiro em PDF para apresentação ou prestação de contas.
-
----
-
-## 9.5. Dashboards específicos por perfil
-
-Acessíveis pelo menu Dashboard, conforme permissão:
-
-- **Impacto Social** (`/dashboard/impacto-social`) — métricas de impacto: beneficiários atendidos, evolução, ranking de bairros.
-- **Gestão Operacional** (`/dashboard/gestao-operacional`) — KPIs operacionais, solicitações em análise, painéis de risco, atividades.
-
-Ambos contêm cards, gráficos e tabelas dinâmicos com base nos filtros de período e unidade.
-
----
-
-## 9.6. Boas práticas
-
-- **Configure relatórios mensais agendados** — evita esquecer de gerar para prestação de contas.
-- **Revise destinatários antes de salvar** — relatórios contêm dados sensíveis e a LGPD exige cuidado.
-- **Use filtros antes de exportar** — relatórios sem filtro podem ser enormes e demorados.
-- **Limpe periodicamente o histórico de downloads** — evita acúmulo.
-- Evite: **Não envie relatórios com dados sensíveis para e-mails pessoais** — apenas institucionais.
-- Evite: **Não compartilhe arquivos exportados em redes sociais ou serviços públicos** — exigência LGPD.
+- Sempre aplique filtros antes de exportar.
+- Use o mesmo filtro para comparar tela e relatorio.
+- Revise destinatarios de agendamentos.
+- Evite relatorios sem periodo.
+- Mascare dados pessoais antes de anexar arquivo a chamado.
+- Registre divergencias com tela, filtros, horario e arquivo gerado.

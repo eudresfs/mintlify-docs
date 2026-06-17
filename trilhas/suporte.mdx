@@ -1,0 +1,42 @@
+---
+title: Trilha de suporte
+description: Caminho de leitura para diagnóstico, coleta de evidências e escalonamento seguro.
+---
+
+A trilha de suporte ajuda a diferenciar erro de acesso, regra de negócio, status incorreto, falha de upload, divergência de relatório e dúvida operacional.
+
+## O que ler primeiro
+
+| Prioridade | Pagina | Uso |
+|---|---|---|
+| 1 | [Solução de problemas](/suporte/troubleshooting) | Diagnostico por erro, tela e comportamento. |
+| 2 | [FAQ](/suporte/faq) | Resposta rapida para duvidas comuns. |
+| 3 | [Glossario](/comecar/glossario) | Padronizar termos em chamados. |
+| 4 | [Changelog](/changelog/ultimas-entregas) | Identificar mudanca recente que alterou rotina. |
+| 5 | [Screenshots e dados pessoais](/producao/screenshots) | Regra de evidencias sem expor cidadaos. |
+
+## Checklist de atendimento
+
+1. Identifique usuario, unidade, perfil, tela, horario e protocolo.
+2. Confirme se a opcao esperada aparece para outro usuario com perfil equivalente.
+3. Verifique status da entidade antes de concluir que a acao sumiu.
+4. Reproduza com o menor conjunto de passos possivel.
+5. Anexe screenshot apenas com dados pessoais mascarados.
+6. Escalone para TI quando houver erro HTTP, falha persistente de upload, divergencia de relatorio ou comportamento diferente entre front e API.
+
+## Classificacao rapida
+
+| Sintoma | Provavel origem | Primeiro passo |
+|---|---|---|
+| Botao nao aparece | Perfil, unidade, status ou tela errada | Conferir contexto e trilha do modulo. |
+| Upload falha | Tipo, tamanho, rede ou servico de documentos | Testar outro arquivo permitido e registrar horario. |
+| Total do relatorio diverge | Filtro, periodo, judicializacao ou escopo | Salvar filtros aplicados antes de comparar. |
+| Pagamento nao libera | Sequencia, concessao inativa ou status invalido | Abrir historico do pagamento e concessao. |
+| Fornecedor nao acessa solicitacao | Portal separado ou vinculo do fornecedor | Conferir login do portal e solicitacao vinculada. |
+
+## Dados que nunca devem ir sem mascara
+
+- CPF, NIS, RG, telefone, e-mail pessoal e endereco.
+- Dados bancarios, comprovantes, certidoes, laudos e anexos.
+- Nome completo de cidadao quando nao for indispensavel ao atendimento.
+- Tokens de autorizacao, links publicos e credenciais.

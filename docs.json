@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "PGBen",
-  "description": "Documentação para quem opera o sistema todos os dias. Cadastro, análise, concessão, pagamento, monitoramento.",
+  "description": "Documentação operacional para quem usa o PGBen em produção. Trilhas por papel, fluxos do sistema, changelog e suporte.",
   "colors": {
     "primary": "#137f93",
     "light": "#26a7be",
@@ -27,9 +27,14 @@
           "href": "/"
         },
         {
-          "anchor": "Sumário",
-          "icon": "list",
-          "href": "/sumario"
+          "anchor": "Trilhas",
+          "icon": "route",
+          "href": "/trilhas/visao-geral"
+        },
+        {
+          "anchor": "Changelog",
+          "icon": "history",
+          "href": "/changelog/ultimas-entregas"
         },
         {
           "anchor": "Suporte",
@@ -51,6 +56,19 @@
         ]
       },
       {
+        "group": "Trilhas de leitura",
+        "icon": "route",
+        "expanded": true,
+        "pages": [
+          "trilhas/visao-geral",
+          "trilhas/operador",
+          "trilhas/gestor",
+          "trilhas/administrador",
+          "trilhas/fornecedor",
+          "trilhas/suporte"
+        ]
+      },
+      {
         "group": "Operação",
         "icon": "workflow",
         "expanded": true,
@@ -67,8 +85,24 @@
         "expanded": true,
         "pages": [
           "gestao/administracao",
-          "gestao/relatorios-downloads",
+          "gestao/oficios",
+          "gestao/relatorios-downloads"
+        ]
+      },
+      {
+        "group": "Fornecedor",
+        "icon": "handshake",
+        "expanded": true,
+        "pages": [
           "gestao/fornecedor"
+        ]
+      },
+      {
+        "group": "Changelog",
+        "icon": "history",
+        "expanded": true,
+        "pages": [
+          "changelog/ultimas-entregas"
         ]
       },
       {
@@ -78,6 +112,15 @@
         "pages": [
           "suporte/faq",
           "suporte/troubleshooting"
+        ]
+      },
+      {
+        "group": "Publicação",
+        "icon": "badge-check",
+        "expanded": false,
+        "pages": [
+          "producao/checklist-publicacao",
+          "producao/screenshots"
         ]
       },
       {
@@ -107,9 +150,6 @@
     "prompt": "Pesquise ou pergunte"
   },
   "api": {
-    "openapi": "https://dev-api-semtas-natal.pgben.com.br/openapi.json"
-  },
-  "banner": {
-    "content": "Documentação em desenvolvimento. Algumas informações podem estar desatualizadas ou incorretas."
+    "openapi": "https://api-semtas-natal.pgben.com.br/openapi.json"
   }
 }

@@ -1,0 +1,103 @@
+---
+title: Changelog das últimas entregas
+description: Mudanças recentes do PGBen entre 2 e 16 de junho de 2026.
+---
+
+Este changelog resume entregas identificadas no código de `pgben-front` e `pgben-server`, com recorte de 2 a 16 de junho de 2026. A classificação segue a ideia de changelog operacional: adicionado, alterado e corrigido, com foco em impacto para usuários finais.
+
+<Warning>
+O recorte usa commits recentes como fonte tecnica. Se uma mudanca ainda nao tiver sido publicada em producao, trate a entrada como preparacao de release ate confirmacao do deploy.
+</Warning>
+
+## 16 de junho de 2026
+
+### Corrigido
+
+- Relatorios de pagamentos passaram a aplicar filtro de judicializacao com base no contexto correto da solicitacao.
+- Filtros de pagamentos foram ajustados para incluir concessoes em reavaliacao quando o fluxo exigir.
+- Removido filtro implicito que escondia pagamentos vinculados a concessoes nao ativas em cenarios de consulta e conciliacao.
+
+## 15 de junho de 2026
+
+### Adicionado
+
+- Ofícios passaram a aceitar documento proprio anexado ao detalhe do oficio.
+- Relatorio de oficios passou a refletir a estrutura com lotes.
+
+### Alterado
+
+- A tela de detalhe de oficio passou a gerenciar documento, exibindo acoes de anexar, baixar, visualizar e remover quando aplicavel.
+- A listagem e o detalhe de oficios escondem acoes bloqueadas quando ha lote pago, cancelado ou em situacao terminal.
+
+### Corrigido
+
+- Monitoramento passou a exibir tecnico na abertura da advertencia.
+- Detalhes e modal de advertencia passaram a exibir motivo com mais clareza.
+
+## 10 a 12 de junho de 2026
+
+### Adicionado
+
+- Ofícios ganharam suporte a lotes, competencias e detalhamento por lote.
+- Pagamento de lotes passou a respeitar regra sequencial.
+- Listagem de oficios passou a usar paginação por identificador antes de carregar lotes.
+- Exportacao e relatorio de oficios foram adicionados.
+
+### Corrigido
+
+- Corrigida duplicacao em listagem e modal de duplicacao pendente.
+- Cancelamento de lote passou a liberar corretamente o lote seguinte quando a regra permitir.
+
+## 8 a 11 de junho de 2026
+
+### Adicionado
+
+- Solicitações e concessões passaram a expor numero de processo judicial.
+- Detalhe de solicitacao passou a exibir translado quando existir no beneficio.
+- Fluxo de fornecedor recebeu edicao de solicitacao em pendencia, contatos, recibos e preservacao de documento quando houver falha de upload.
+- Pagamentos receberam melhorias em anexos, historico e analise de comprovantes no modal de detalhes.
+
+### Alterado
+
+- Requerente, contatos e endereco passaram a ter fallback mais consistente no detalhe da solicitacao.
+- Documentos de residencia passaram a ser exigidos quando configurados como obrigatorios.
+
+### Corrigido
+
+- Ajustada a exibicao de parcelas e fallback de schema no detalhe da solicitacao.
+- Corrigida quantidade esperada em fluxo de natalidade.
+- Acoes de anexo em pagamento e confirmacao de rejeicao foram reforcadas.
+
+## 2 a 5 de junho de 2026
+
+### Adicionado
+
+- Ciclo de reavaliacao para concessao com determinacao judicial.
+- Hub de beneficios com estrategia de pagamento e configuracao operacional mais completa.
+- Indicadores visuais de novidades no front para modulos recentes.
+- Monitoramento social com ajustes de conformidade, totais de visitas realizadas e exportacao por filtros.
+
+### Alterado
+
+- Pagamentos passaram por ajustes de estrutura para suportar dados complementares e historico.
+- Fornecedor recebeu melhorias de texto, bloqueio de edicao em falha de carregamento e reenvio de link de autorizacao.
+- Beneficios configuraveis receberam ajustes de catalogo, campos e data de inicio raiz.
+
+### Corrigido
+
+- Exportacao de monitoramento passou a respeitar filtros da listagem.
+- Regras de processo e agrupamento por ano da concessao raiz foram ajustadas em monitoramento.
+
+## Impacto por perfil
+
+| Perfil | Mudancas mais relevantes |
+|---|---|
+| Operador | Solicitacoes com processo judicial, translado, documentos obrigatorios e detalhe mais consistente. |
+| Gestor | Reavaliacao judicial, filtros de pagamento, anexos de comprovante, relatorios e oficios com lotes. |
+| Administrador | Hub de beneficios, catalogos, estrategia de pagamento, fornecedores e orcamento. |
+| Fornecedor | Edicao em pendencia, contatos, recibos, autorizacao e complementacao com documentos. |
+| Suporte | Novos pontos de diagnostico em pagamento, oficios, judicializacao, monitoramento e upload. |
+
+## Evidencia de auditoria
+
+As entradas foram derivadas de `git log --since=2026-06-02` nos repositórios `pgben-front` e `pgben-server`, do codigo das rotas e controllers, e da checagem da OpenAPI de producao em `https://api-semtas-natal.pgben.com.br/openapi.json`.

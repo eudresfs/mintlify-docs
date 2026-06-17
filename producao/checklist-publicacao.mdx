@@ -1,0 +1,61 @@
+---
+title: Checklist de publicação
+description: Validações necessárias antes de publicar a documentação em produção.
+---
+
+Esta página registra o checklist operacional para manter a documentação Mintlify pronta para produção.
+
+## Configuracao obrigatoria
+
+| Item | Regra |
+|---|---|
+| Link do sistema | `https://semtas-natal.pgben.com.br` |
+| OpenAPI | `https://api-semtas-natal.pgben.com.br/openapi.json` |
+| Banner | Nao publicar aviso de desenvolvimento em producao. |
+| Fonte de verdade | Codigo atual de `pgben-front`, `pgben-server` e orientacoes da SEMTAS. |
+| Posicionamento | Documentacao de usuario final, sem expor contrato tecnico interno como guia principal. |
+
+## Validacao antes do push
+
+1. Rodar `mint broken-links`.
+2. Rodar validacao de formato disponivel na CLI Mintlify instalada.
+3. Abrir preview local com `mint dev`.
+4. Revisar navegacao por trilha: operador, gestor, administrador, fornecedor e suporte.
+5. Conferir changelog das ultimas duas semanas.
+6. Confirmar que links para producao apontam para os dominios corretos.
+7. Confirmar que a OpenAPI de producao valida sem tags duplicadas ou schema invalido.
+8. Conferir que screenshots nao exponham dados pessoais.
+9. Rodar `git diff --check`.
+
+## Auditoria de conteudo
+
+| Area | Checagem |
+|---|---|
+| Beneficiarios | CPF, NIS, transferencia, historico e dados sensiveis descritos com cuidado. |
+| Solicitacoes | Status, pendencias, determinacao judicial, translado e documentos obrigatorios. |
+| Concessoes | Reavaliacao, suspensao, bloqueio, cessacao e status de pagamentos. |
+| Pagamentos | Sequencia, comprovante, anexos, rejeicao, estorno e filtros judicializados. |
+| Monitoramento | Planejamento, visitas, advertencias e relatorios. |
+| Fornecedor | Portal separado, autorizacao, complementacao e funcionarios. |
+| Ofícios | Lotes, documento proprio, bloqueio sequencial e relatorio. |
+
+## Regras editoriais
+
+- Use linguagem operacional e institucional.
+- Explique regra de negocio pelo efeito para o usuario.
+- Evite nomes internos de permissoes, DTOs, entidades e flags.
+- Quando uma acao depender de perfil, diga que depende de acesso liberado.
+- Quando uma regra depender de status, cite o status antes da acao.
+- Nunca copie exemplos crus da OpenAPI para paginas de usuario final sem sanitizar.
+
+## Comandos
+
+```bash
+mint broken-links
+mint dev
+git diff --check
+```
+
+<Warning>
+O script `convert.ps1` e legado. Use apenas quando a equipe decidir reconverter conteudo antigo. Ele pode sobrescrever edicoes manuais em MDX.
+</Warning>
